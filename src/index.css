@@ -1,3 +1,4 @@
+import from
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -35,6 +36,7 @@ h1 {
     line-height: 1.1;
 }
 
+
 button {
     border-radius: 8px;
     border: 1px solid transparent;
@@ -65,4 +67,12 @@ button:focus-visible {
     button {
         background-color: #f9f9f9;
     }
+}
+html,
+* {
+    box-sizing: border-box;
+    padding-left: 0;
+    list-style-type: none;
+    border: none;
+    outline: none;
 }
