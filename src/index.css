@@ -1,9 +1,9 @@
-import from
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    --font-family: "Inter", sans-serif;
+    --second-family: "Roboto", sans-serif;
     line-height: 1.5;
     font-weight: 400;
-
+    font-family: var(--font-family);
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
@@ -13,7 +13,6 @@ import from
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 a {
     font-weight: 500;
     color: #646cff;
@@ -31,11 +30,14 @@ body {
     min-height: 100vh;
 }
 
-h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
+h1, h2, h3, h4, p {
+    margin: 0;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
 
 button {
     border-radius: 8px;

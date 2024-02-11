@@ -12,7 +12,11 @@ export const MainPage: React.FC = () => {
         <>
 
             <Layout>
-                <Sider>Sider</Sider>
+                <Sider
+                    className={'side-bar'}
+                    width={"208"}>
+                    Sider
+                </Sider>
                 <Layout>
                     <Header>
                         <HeaderContent/>

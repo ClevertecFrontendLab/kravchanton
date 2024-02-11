@@ -1,7 +1,45 @@
 .header {
     min-height: 168px;
     width: 100%;
-    padding: 0;
-    margin: 0;
-    background-color:  var(--primary-light-1);
+    background: var(--primary-light-1);
+    padding: 16px 24px;
+
+    & p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 130%;
+        color: var(--character-light-title-85)
+    }
+
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 8px;
+
+    & h1 {
+        font-weight: 700;
+        font-size: 38px;
+        line-height: 130%;
+        color: var(--character-light-title-85);
+        padding-top: 6px;
+    }
+}
+
+.settings {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    align-self: flex-start;
+    column-gap: 10px;
+    flex-wrap: nowrap;
+    padding: 9px 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: transparent;
+
+
+
 }
