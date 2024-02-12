@@ -1,23 +1,27 @@
-#root {
+.wrapper {
     margin: 0 auto;
     box-sizing: border-box;
+    max-width: 1440px;
     min-height: 1024px;
-    width: 100%;
-    height: 100%;
 }
 
-
-
-.ant-layout-has-sider {
-    display: flex;
-    flex-direction: row;
+.sider {
+    z-index: 100;
+    background: white;
+}
+.ant-layout,
+.ant-layout-footer {
+    background: none;
 }
 
-.ant-layout {
-    width: 100%;
+.ant-layout-header {
+    padding: 16px 24px;
+    height: auto;
+    line-height: 1;
+    background-color: var(--primary-light-1);
 }
-.ant-layout-sider {
-    height: 1024px;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
-    background: var(--character-light-primary-inverse);
+
+.ant-layout.ant-layout-has-sider {
+    background: url('./src/assets/image/main_page_light.png') no-repeat center;
+    background-size: cover;
 }

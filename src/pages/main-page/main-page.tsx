@@ -10,21 +10,27 @@ export const MainPage: React.FC = () => {
 
     return (
         <>
-
-            <Layout>
+            <Layout className={'wrapper'} >
                 <Sider
-                    className={'side-bar'}
-                    width={"208"}>
-                    Sider
+                    className={'sider'}
+                    width={`208`}
+                    trigger={null}
+                    collapsible>
+
                 </Sider>
                 <Layout>
                     <Header>
-                        <HeaderContent/>
+                        <HeaderContent />
                     </Header>
-                    <Content>Content</Content>
-                    <Footer>Footer</Footer>
+                    <Content>
+
+                    </Content>
+                    <Footer>
+
+                    </Footer>
                 </Layout>
             </Layout>
+
 
         </>
     );
