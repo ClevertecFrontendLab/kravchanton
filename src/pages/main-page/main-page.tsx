@@ -1,16 +1,17 @@
 import {Layout} from 'antd';
 import React from 'react';
+import './main-page.css';
+import {HeaderContent} from "@components/HeaderContent/HeaderContent";
+import {MainContent} from "@components/MainContent/MainContent";
 
 const {Footer, Header, Sider, Content} = Layout;
 
-import './main-page.css';
-import {HeaderContent} from "@components/HeaderContent/HeaderContent";
 
 export const MainPage: React.FC = () => {
 
     return (
         <>
-            <Layout className={'wrapper'} >
+            <Layout className={'wrapper'}>
                 <Sider
                     className={'sider'}
                     width={`208`}
@@ -20,10 +21,10 @@ export const MainPage: React.FC = () => {
                 </Sider>
                 <Layout>
                     <Header>
-                        <HeaderContent />
+                        <HeaderContent/>
                     </Header>
                     <Content>
-
+                        <MainContent />
                     </Content>
                     <Footer>
 
