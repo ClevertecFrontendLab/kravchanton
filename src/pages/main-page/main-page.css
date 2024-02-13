@@ -10,6 +10,11 @@
     text-align: center;
     margin-top: 30px;
     margin-bottom: 50px;
+
+}
+
+.logo img {
+    width: 100%;
 }
 
 .ant-layout-sider {
@@ -57,4 +62,22 @@
 
 .ant-btn-icon-only.ant-btn-lg {
     padding-left: 15px;
+}
+
+@media (max-width: 576px) {
+    .ant-layout-sider {
+        position: absolute;
+        height: 100%;
+    }
+    .ant-menu-item-only-child {
+        padding-left: 8px;
+    }
+    .exit-button {
+        display: block;
+        text-align: center;
+    }
+    .ant-layout-footer {
+        padding: 24px 16px 42px 16px;
+
+    }
 }

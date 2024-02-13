@@ -16,3 +16,13 @@
         cursor: pointer;
     }
 }
+
+
+@media (max-width: 576px) {
+    .trigger {
+        top: 72px;
+        width: 32px;
+        height: 48px;
+    }
+
+}

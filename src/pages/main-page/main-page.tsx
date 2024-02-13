@@ -9,18 +9,22 @@ import logo from '../../assets/image/Logo.png'
 import LogoMin from '../../assets/image/LogoMin.png'
 import {Trigger} from "@components/Triger/Triger";
 import {ExitIcon} from "../../assets/image/Exit";
+import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 
 const {Footer, Header, Sider, Content} = Layout;
 
 
 export const MainPage: React.FC = () => {
-    const [collapsed, setCollapsed] = useState<boolean>(false)
+    const [collapsed, setCollapsed] = useState<boolean>(true)
+    const breakpoint = useBreakpoint();
 
 
     return (
         <>
             <Layout className={'wrapper'}>
-                <Sider width={'208'}
+                <Sider width={`${breakpoint.xs ? 106 : 208}`}
+                       collapsedWidth={`${breakpoint.xs ? 0 : 64}`}
+                       className={'sider'}
                        trigger={null}
                        collapsible
                        collapsed={collapsed}>
@@ -33,7 +37,7 @@ export const MainPage: React.FC = () => {
                         type={'default'}
                         size={'large'}
                         className={'exit-button'}
-                        icon={<ExitIcon/>}
+                        icon={breakpoint.xs ? "" : <ExitIcon/>}
                     >
                         {collapsed ? '' : 'Выход'}
                     </Button>

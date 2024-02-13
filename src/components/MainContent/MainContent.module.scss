@@ -42,3 +42,24 @@
         }
     }
 }
+
+@media (max-width: 576px) {
+    .contentWrap {
+        padding: 24px 16px;
+        gap: 24px;
+
+        .contentItem {
+            margin: 0;
+            width: 100%;
+            padding: 16px;
+
+        }
+    }
+    .cardsWrapper {
+        flex-direction: column;
+        gap: 8px;
+        margin: 0;
+
+    }
+}
+

@@ -6,3 +6,9 @@
         width: 182px;
     }
 }
+
+@media (max-width: 576px) {
+    .cardItem {
+        width: 100%;
+    }
+}
