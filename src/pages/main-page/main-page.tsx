@@ -13,9 +13,8 @@ import {ExitIcon} from "../../assets/image/Exit";
 const {Footer, Header, Sider, Content} = Layout;
 
 
-
 export const MainPage: React.FC = () => {
-const [collapsed, setCollapsed] = useState<boolean>(false)
+    const [collapsed, setCollapsed] = useState<boolean>(false)
 
 
     return (
@@ -25,7 +24,7 @@ const [collapsed, setCollapsed] = useState<boolean>(false)
                        trigger={null}
                        collapsible
                        collapsed={collapsed}>
-                    <div className="logo"><img src={collapsed? LogoMin :logo}/></div>
+                    <div className="logo"><img src={collapsed ? LogoMin : logo}/></div>
 
                     <NavigationMenu/>
                     <Trigger setCollapsed={() => setCollapsed(!collapsed)}/>
@@ -34,7 +33,7 @@ const [collapsed, setCollapsed] = useState<boolean>(false)
                         type={'default'}
                         size={'large'}
                         className={'exit-button'}
-                        icon={<ExitIcon />}
+                        icon={<ExitIcon/>}
                     >
                         {collapsed ? '' : 'Выход'}
                     </Button>

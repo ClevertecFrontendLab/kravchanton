@@ -60,7 +60,7 @@ export const MainContent = () => <>
                 откладывай на завтра — начни тренироваться уже сегодня!</h3>
         </div>
         <div className={styles.cardsWrapper}>
-            {cards.map((s) => <CardItem title={s.title}
+            {cards.map((s) => <CardItem key={s.id} title={s.title}
                                         linkTitle={s.linkTitle}
                                         icon={s.icon}/>)}
         </div>
