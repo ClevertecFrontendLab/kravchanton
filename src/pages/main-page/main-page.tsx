@@ -3,6 +3,7 @@ import React from 'react';
 import './main-page.css';
 import {HeaderContent} from "@components/HeaderContent/HeaderContent";
 import {MainContent} from "@components/MainContent/MainContent";
+import {FooterContent} from "@components/FooterContent/FooterContent";
 
 const {Footer, Header, Sider, Content} = Layout;
 
@@ -24,10 +25,10 @@ export const MainPage: React.FC = () => {
                         <HeaderContent/>
                     </Header>
                     <Content>
-                        <MainContent />
+                        <MainContent/>
                     </Content>
                     <Footer>
-
+                        <FooterContent />
                     </Footer>
                 </Layout>
             </Layout>
