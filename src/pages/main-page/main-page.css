@@ -4,8 +4,11 @@
     max-width: 1440px;
     min-height: 1024px;
 }
-
-.sider {
+.logo {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+.ant-layout-sider {
     z-index: 100;
     background: white;
 }

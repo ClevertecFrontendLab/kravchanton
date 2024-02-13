@@ -1,9 +1,8 @@
 import {Button, Card} from "antd";
 import {AndroidFilled, AppleFilled} from "@ant-design/icons";
-import styles from './FooterCard.module.scss'
 
 export const FooterCard = () => <>
-    <Card  bodyStyle={{padding: "12px 0"}} title={
+    <Card bodyStyle={{padding: "12px 0"}} title={
         <div>
             <Button
                 style={{color: "var(--primary-light-6)", padding: "0px"}}
@@ -18,10 +17,12 @@ export const FooterCard = () => <>
         </div>
     }
     >
-        <Button size={'medium'} type={'link'} style={{color: ' var(--character-light-title-85)'}} icon={<AndroidFilled/>}>
+        <Button size={'medium'} type={'link'} style={{color: ' var(--character-light-title-85)'}}
+                icon={<AndroidFilled/>}>
             Android OS
         </Button>
-        <Button size={'medium'} type={'link'} style={{color: ' var(--character-light-title-85)'}} icon={<AppleFilled/>}>
+        <Button size={'medium'} type={'link'} style={{color: ' var(--character-light-title-85)'}}
+                icon={<AppleFilled/>}>
             Apple OS
         </Button>
     </Card>
