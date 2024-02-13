@@ -6,20 +6,24 @@ import {ReactNode} from "react/ts5.0";
 
 
 export type CardsType = {
+    id: number
     title: string;
     linkTitle: string;
     icon: ReactNode;
 };
 const cards: CardsType[] = [
     {
+        id: 1,
         title: 'Расписать тренировки',
         linkTitle: 'Тренировки',
         icon: <HeartFilled/>,
     }, {
+        id: 2,
         title: 'Назначить календарь',
         linkTitle: 'Календарь',
         icon: <CalendarOutlined/>,
     }, {
+        id: 3,
         title: 'Заполнить профиль',
         linkTitle: 'Профиль',
         icon: <IdcardOutlined/>,

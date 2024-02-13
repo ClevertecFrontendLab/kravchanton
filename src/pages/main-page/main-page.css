@@ -4,18 +4,24 @@
     max-width: 1440px;
     min-height: 1024px;
 }
+
 .logo {
+    display: block;
+    text-align: center;
     margin-top: 30px;
     margin-bottom: 50px;
 }
+
 .ant-layout-sider {
     z-index: 100;
     background: white;
 }
+
 .ant-layout,
 .ant-layout-footer {
     background: none;
 }
+
 .ant-layout-footer {
     padding: 0 24px 42px 24px;
 }
@@ -30,4 +36,25 @@
 .ant-layout.ant-layout-has-sider {
     background: url('./src/assets/image/main_page_light.png') no-repeat center;
     background-size: cover;
+}
+
+.exit-button {
+    display: flex;
+    text-align: start;
+    flex-direction: row;
+    gap: 25px;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--character-light-title-85);
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    transform: translateY(-100%);
+    overflow: hidden;
+
+}
+
+.ant-btn-icon-only.ant-btn-lg {
+    padding-left: 15px;
 }
