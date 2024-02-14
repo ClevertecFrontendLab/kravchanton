@@ -1,34 +1,61 @@
-import React, { useState } from 'react';
-
-import reactLogo from '/react.svg';
-import viteLogo from '/vite.svg';
-import tsLogo from '/ts.svg';
+import {Button, Layout} from 'antd';
+import React, {useState} from 'react';
 import './main-page.css';
+import {HeaderContent} from "@components/HeaderContent/HeaderContent";
+import {MainContent} from "@components/MainContent/MainContent";
+import {FooterContent} from "@components/FooterContent/FooterContent";
+import {NavigationMenu} from "@components/NavigationMenu/NavigationMenu";
+import logo from '../../assets/image/Logo.png'
+import LogoMin from '../../assets/image/LogoMin.png'
+import {Trigger} from "@components/Triger/Triger";
+import {ExitIcon} from "../../assets/image/Exit";
+import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
+
+const {Footer, Header, Sider, Content} = Layout;
+
 
 export const MainPage: React.FC = () => {
-    const [count, setCount] = useState(0);
+    const [collapsed, setCollapsed] = useState<boolean>(true)
+    const breakpoint = useBreakpoint();
+
 
     return (
         <>
-            <div>
-                <a href='https://vitejs.dev' target='_blank'>
-                    <img src={viteLogo} className='logo' alt='Vite logo' />
-                </a>
-                <a href='https://react.dev' target='_blank'>
-                    <img src={reactLogo} className='logo react' alt='React logo' />
-                </a>
-                <a href='https://www.typescriptlang.org/' target='_blank'>
-                    <img src={tsLogo} className='logo' alt='TS logo' />
-                </a>
-            </div>
-            <h1>Vite + React + TS</h1>
-            <div className='card'>
-                <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-                <p>
-                    Edit <code>src/pages/main-page.tsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
+            <Layout className={'wrapper'}>
+                <Sider width={`${breakpoint.xs ? 106 : 208}`}
+                       collapsedWidth={`${breakpoint.xs ? 0 : 64}`}
+                       className={'sider'}
+                       trigger={null}
+                       collapsible
+                       collapsed={collapsed}>
+                    <div className="logo"><img src={collapsed ? LogoMin : logo}/></div>
+
+                    <NavigationMenu/>
+                    <Trigger setCollapsed={() => setCollapsed(!collapsed)}/>
+                    <Button
+                        block
+                        type={'default'}
+                        size={'large'}
+                        className={'exit-button'}
+                        icon={breakpoint.xs ? "" : <ExitIcon/>}
+                    >
+                        {collapsed ? '' : 'Выход'}
+                    </Button>
+                </Sider>
+                <Layout>
+                    <Header>
+                        <HeaderContent/>
+                    </Header>
+                    <Content>
+                        <MainContent/>
+                    </Content>
+                    <Footer>
+                        <FooterContent/>
+                    </Footer>
+                </Layout>
+            </Layout>
+
+
         </>
     );
 };

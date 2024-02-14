@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+.card {
+    width: auto;
+}
+
+@media (max-width: 576px) {
+    .container {
+        gap: 24px;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+
+
+    }
+    .card {
+        width: 100%;
+        flex-grow: 2;
+    }
+
+}

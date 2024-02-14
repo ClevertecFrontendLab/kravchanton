@@ -1,0 +1,28 @@
+.trigger {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--character-light-primary-inverse);
+    clip-path: polygon(0 0, 100% 12%, 100% 88%, 0% 100%);
+
+
+    & :hover {
+        cursor: pointer;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .trigger {
+        top: 72px;
+        width: 32px;
+        height: 48px;
+    }
+
+}
