@@ -1,30 +1,29 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import styles from './MainContent.module.scss'
 import {CalendarOutlined, HeartFilled, IdcardOutlined} from "@ant-design/icons";
 import {CardItem} from "@components/CardItem/CardItem";
-import {ReactNode} from "react/ts5.0";
-
+import {Typography} from 'antd';
 
 export type CardsType = {
     id: number
-    title: string;
+    title: ReactNode;
     linkTitle: string;
     icon: ReactNode;
 };
 const cards: CardsType[] = [
     {
         id: 1,
-        title: 'Расписать тренировки',
+        title: <Typography.Text ellipsis={true} style={{whiteSpace: "normal"}}>Расписать тренировки</Typography.Text>,
         linkTitle: 'Тренировки',
         icon: <HeartFilled/>,
     }, {
         id: 2,
-        title: 'Назначить календарь',
+        title: <Typography.Text ellipsis={true} style={{whiteSpace: "normal"}}>Назначить календарь</Typography.Text>,
         linkTitle: 'Календарь',
         icon: <CalendarOutlined/>,
     }, {
         id: 3,
-        title: 'Заполнить профиль',
+        title: <Typography.Text ellipsis={true} style={{whiteSpace: "normal"}}>Заполнить профиль</Typography.Text>,
         linkTitle: 'Профиль',
         icon: <IdcardOutlined/>,
     },
