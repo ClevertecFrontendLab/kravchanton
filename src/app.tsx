@@ -19,6 +19,7 @@ export const App = () => {
     const dispatch = useAppDispatch()
     const results = [
         {
+            id: 1,
             path: 'error-login',
             status: 'warning',
             title: 'Вход не выполнен',
@@ -27,6 +28,7 @@ export const App = () => {
             testId: 'login-retry-button'
         },
         {
+            id: 2,
             path: 'error-user-exist',
             status: "error",
             title: "Данные не сохранились",
@@ -35,6 +37,7 @@ export const App = () => {
             testId: 'registration-back-button'
         },
         {
+            id: 3,
             path: 'error',
             status: "error",
             title: "Данные не сохранились",
@@ -43,6 +46,7 @@ export const App = () => {
             testId: 'registration-retry-button'
         },
         {
+            id: 4,
             path: 'success',
             status: "success",
             title: "Регистрация успешна",
@@ -51,6 +55,7 @@ export const App = () => {
             testId: 'registration-enter-button'
         },
         {
+            id: 5,
             path: 'error-check-email-no-exist',
             status: "error",
             title: "Такой e-mail не зарегистрирован",
@@ -59,6 +64,7 @@ export const App = () => {
             testId: 'check-retry-button'
         },
         {
+            id: 6,
             path: 'error-check-email',
             status: "500",
             title: "Что-то пошло не так",
@@ -66,6 +72,7 @@ export const App = () => {
             button: 'Назад',
             testId: 'check-back-button'
         }, {
+            id: 7,
             path: 'error-change-password',
             status: "error",
             title: "Данные не сохранились",
@@ -74,6 +81,7 @@ export const App = () => {
             testId: 'change-retry-button'
         },
         {
+            id: 8,
             path: 'success-change-password',
             status: "success",
             title: "Пароль успешно изменен",
@@ -104,7 +112,7 @@ export const App = () => {
             </Route>
 
             <Route path='/result' element={<LayoutResult/>}>
-                {results.map((t) => <Route path={t.path}
+                {results.map((t) => <Route path={t.path} key={t.id}
                                            element={<ResultAuth status={t.status} title={t.title}
                                                                 subTitle={t.subTitle}
                                                                 button={t.button}

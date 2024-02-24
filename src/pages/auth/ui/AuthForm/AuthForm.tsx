@@ -10,7 +10,8 @@ export const AuthForm: FC = () => {
 
     type AuthFormType = {
         email: string,
-        password: string
+        password: string,
+        remember: boolean
     }
 const[email, setEmail] = useState('')
 
@@ -34,7 +35,9 @@ const[email, setEmail] = useState('')
 
             initialValues={{
                 email: '',
-                password: ''
+                password: '',
+                remember: false,
+
             }}
             onFinish={onFinish}
             className={styles.form}>
@@ -69,7 +72,7 @@ const[email, setEmail] = useState('')
             </div>
 
             <div className={styles.rowForm}>
-                <Form.Item style={{marginBottom: 0}}>
+                <Form.Item style={{marginBottom: 0}} name={'remember'}  valuePropName="checked">
                     <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>
                 </Form.Item>
 

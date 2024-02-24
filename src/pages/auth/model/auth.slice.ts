@@ -4,10 +4,14 @@ import {authAPI, LoginParamsType} from "@pages/auth/api/auth.api";
 import {history} from './../../../redux/configure-store';
 
 
-export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>("auth/login", async (arg, thunkAPI) => {
+export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>("auth/login", async ({email, password, remember}, thunkAPI) => {
     const {dispatch, rejectWithValue} = thunkAPI;
     try {
-        const response = await authAPI.login(arg)
+        const response = await authAPI.login({email, password})
+        if(remember) {
+            localStorage.token = response.data.accessToken;
+        }
+        console.log(remember)
         return response.data
     } catch {
         history.push('/result/error-login', {state: history.location.pathname});
@@ -133,7 +137,6 @@ const AuthSlice = createSlice({
             .addCase(login.fulfilled, (state: AuthType, action: { payload: PayloadType }) => {
                 state.isLoggedIn = true;
                 state.accessToken = action.payload.accessToken
-                localStorage.token = action.payload.accessToken;
                 state.isLoading = false;
             }).addCase(login.rejected, (state: AuthType, action) => {
             state.isLoading = false;
