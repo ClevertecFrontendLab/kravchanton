@@ -5,12 +5,13 @@ import Lottie from 'react-lottie-player'
 
 
 export const Loader = () => <>
-    <div className={styles.wrapper} data-test-id='loader'>
+    <div className={styles.wrapper} >
     </div>
-    <div className={styles.loader}><Lottie
+    <div className={styles.loader} ><Lottie
         loop
         animationData={spin}
         play
+        data-test-id='loader'
         style={{width: 150, height: 150}}
     />
     </div>
