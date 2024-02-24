@@ -11,6 +11,7 @@ export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsTyp
                                                                                                         }, thunkAPI) => {
     const {dispatch, rejectWithValue} = thunkAPI;
     dispatch(setIsLoading(true))
+
     try {
         const response = await authAPI.login({email, password})
         if (remember) {
@@ -20,7 +21,6 @@ export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsTyp
         return response.data
     } catch {
         history.push('/result/error-login', {state: history.location.pathname});
-        dispatch(setlsLoading(false))
     } finally {
         dispatch(setIsLoading(false))
     }
