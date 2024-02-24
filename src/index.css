@@ -1,5 +1,7 @@
 @import "/src/pages/main-page/main-page.css";
+@import "/src/pages/auth/ui/authPage.css";
 @import '/src/utils/main.scss';
+
 body {
     font-family: 'Inter', sans-serif;
     backdrop-filter: blur(12px);
@@ -18,7 +20,7 @@ h1, h2, h3, h4, p {
     margin: 0;
 }
 
-
+a { color: inherit; }
 
 html,
 * {

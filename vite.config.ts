@@ -9,6 +9,9 @@ export default defineConfig({
         host: true,
         port: 3000,
     },
+    optimizeDeps: {
+        exclude: ['js-big-decimal']
+    },
     resolve: {
         alias: {
             '@public': path.resolve(__dirname, 'public'),

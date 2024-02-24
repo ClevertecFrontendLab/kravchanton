@@ -10,6 +10,11 @@ import LogoMin from '../../assets/image/LogoMin.png'
 import {Trigger} from "@components/Triger/Triger";
 import {ExitIcon} from "../../assets/image/Exit";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
+import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
+import {setIsLogout} from "@pages/auth/model/auth.slice";
+import {useSelector} from "react-redux";
+import { Navigate } from "react-router-dom";
+
 
 const {Footer, Header, Sider, Content} = Layout;
 
@@ -17,10 +22,14 @@ const {Footer, Header, Sider, Content} = Layout;
 export const MainPage: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(true)
     const breakpoint = useBreakpoint();
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
+    const dispatch =useAppDispatch()
+
+    const logout = () => dispatch(setIsLogout())
 
     return (
-        <>
+        isLoggedIn ? <>
             <Layout className={'wrapper'}>
                 <Sider width={`${breakpoint.xs ? 106 : 208}`}
                        collapsedWidth={`${breakpoint.xs ? 0 : 64}`}
@@ -33,6 +42,7 @@ export const MainPage: React.FC = () => {
                     <NavigationMenu/>
                     <Trigger setCollapsed={() => setCollapsed(!collapsed)}/>
                     <Button
+                        onClick={logout}
                         block
                         type={'default'}
                         size={'large'}
@@ -56,6 +66,6 @@ export const MainPage: React.FC = () => {
             </Layout>
 
 
-        </>
+        </> : <Navigate to="/auth" />
     );
 };
