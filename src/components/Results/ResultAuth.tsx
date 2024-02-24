@@ -2,7 +2,7 @@ import {FC} from 'react';
 
 import {Button, Result} from 'antd';
 import {history} from "@redux/configure-store";
-import {registration} from "@pages/auth/model/auth.slice";
+import {changePassword, checkEmail, registration} from "@pages/auth/model/auth.slice";
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
 
 type ResultError = {
@@ -22,6 +22,14 @@ export const ResultAuth: FC = ({status, title, subTitle,  button, testId}: Resul
         else if (testId == 'registration-retry-button') {
             history.back();
             dispatch(registration())
+        }
+        else if (testId == 'change-retry-button') {
+            history.back();
+            dispatch(changePassword())
+        }
+        else if (testId == 'check-back-button') {
+            history.back();
+            dispatch(checkEmail())
         }
        else  history.back();
     }

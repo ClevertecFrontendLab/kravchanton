@@ -2,13 +2,11 @@ import {Button, Checkbox, Form, Input} from "antd";
 import {GooglePlusOutlined} from "@ant-design/icons";
 import styles from './AuthForm.module.scss'
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
-import {checkEmail, login} from '../../model/auth.slice';
+import {checkEmail, login, setData} from '../../model/auth.slice';
 import React, {FC, useState} from "react";
-import {useNavigate} from "react-router-dom";
 
 export const AuthForm: FC = () => {
     const dispatch = useAppDispatch();
-    const navigate = useNavigate()
 
     type AuthFormType = {
         email: string,
@@ -17,12 +15,17 @@ export const AuthForm: FC = () => {
 const[email, setEmail] = useState('')
 
 
-    const onFinish = async (values: AuthFormType): void => {
-        await dispatch(login(values))
+    const onFinish = (values: AuthFormType): void => {
+        dispatch(login(values))
 
     };
-    const HandleCheckEmail = async () => {
-        await dispatch(checkEmail(email))
+    const HandleCheckEmail = () => {
+        const data = {
+            email,
+            password: ''
+        }
+        dispatch(setData(data))
+        dispatch(checkEmail())
     }
     return (
 
@@ -70,7 +73,7 @@ const[email, setEmail] = useState('')
                     <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>
                 </Form.Item>
 
-                <Button className={styles.text} disabled={!email} onClick={HandleCheckEmail}
+                <Button className={styles.text} onClick={() => email && HandleCheckEmail()}
                         data-test-id='login-forgot-button'
                         size={'large'} type={'link'}>
                     Забыли пароль?

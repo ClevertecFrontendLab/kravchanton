@@ -38,24 +38,50 @@ export const registration = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginPa
 
     }
 })
-export const checkEmail = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>("auth/registration", async (arg, thunkAPI) => {
+export const checkEmail = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>("auth/checkEmail", async (arg, thunkAPI) => {
     const {dispatch, rejectWithValue} = thunkAPI;
+
     try {
-        const response = await authAPI.checkEmail(arg)
-        history.push('confirm-email', {state: history.location.pathname});
+        const email = thunkAPI.getState().auth.email;
+        const response = await authAPI.checkEmail(email)
+        history.push('/auth/confirm-email', {state: history.location.pathname});
         dispatch(setIsLoading(false))
         return response.data
     } catch (error) {
-console.log(error.response)
-        if (error.response.data.statusCode == 404 && error.response.data.message == 'Email не найден') {
+        console.log(error.response)
+        if (error.response.status == 404 && error.response.data.message == 'Email не найден') {
             history.push("/result/error-check-email-no-exist", {state: history.location.pathname});
             dispatch(setIsLoading(false))
         } else {
             history.push("/result/error-check-email", {state: history.location.pathname});
             dispatch(setIsLoading(false))
-
         }
-
+    }
+})
+export const confirmEmail = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>("auth/confirmEmail", async (arg, thunkAPI) => {
+    const {dispatch, rejectWithValue} = thunkAPI;
+    try {
+        const response = await authAPI.confirmEmail(arg)
+        history.push('/auth/change-password', {state: history.location.pathname});
+        dispatch(setIsLoading(false))
+        return response.data
+    } catch (error) {
+        dispatch(setError(true))
+    }
+})
+export const changePassword = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>("auth/changePassword", async (arg, thunkAPI) => {
+    const {dispatch, rejectWithValue} = thunkAPI;
+    const values = {
+        password: thunkAPI.getState().auth.password,
+        confirmPassword: thunkAPI.getState().auth.password
+    }
+    try {
+        const response = await authAPI.changePassword(values)
+        history.push('/result/success-change-password', {state: history.location.pathname});
+        return response.data
+    } catch (error) {
+        console.log(error)
+        error && history.push('/result/error-change-password', {state: history.location.pathname});
     }
 })
 type PayloadType = {
@@ -66,14 +92,16 @@ type AuthType = {
     email: '',
     password: '',
     isLoading: boolean
-    isLoggedIn: boolean
+    isLoggedIn: boolean,
+    error: boolean
 }
 const initialState: AuthType = {
     accessToken: null,
     email: '',
     password: '',
     isLoggedIn: false,
-    isLoading: false
+    isLoading: false,
+    error: false
 }
 const AuthSlice = createSlice({
     name: "auth",
@@ -82,7 +110,7 @@ const AuthSlice = createSlice({
         setIsLoggedIn(state: AuthType, action) {
             state.isLoggedIn = action.payload
         },
-        setData(state:AuthType, action  ) {
+        setData(state: AuthType, action) {
             state.email = action.payload.email
             state.password = action.payload.password
         },
@@ -92,6 +120,9 @@ const AuthSlice = createSlice({
         },
         setIsLoading(state: AuthType, action) {
             state.isLoading = action.payload
+        },
+        setError(state: AuthType, action) {
+            state.error = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -120,6 +151,6 @@ const AuthSlice = createSlice({
 
     },
 });
-export const {setIsLoggedIn, setIsLogout, setData} = AuthSlice.actions;
+export const {setIsLoggedIn, setIsLogout, setData, setError} = AuthSlice.actions;
 
 export const authSlice = AuthSlice.reducer;

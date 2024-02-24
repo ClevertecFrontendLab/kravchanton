@@ -14,8 +14,7 @@ export const AuthPage = () => {
     const activeKey=location.pathname.split('/')[location.pathname.split('/').length-1];
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-    return !isLoggedIn ? <div className={styles.wrapper}>
-        <div className={styles.blur}>
+    return !isLoggedIn ?
             <div className={styles.form}>
                 <div className={styles.logo}><img src={logo}/></div>
                 <Tabs
@@ -35,8 +34,5 @@ export const AuthPage = () => {
                         },
                     ]}
                 />
-
-            </div>
-        </div>
     </div> : <Navigate to="/main" />
 }

@@ -1,13 +1,12 @@
 import {Button, Form, Input, Typography} from "antd";
-import {GooglePlusOutlined} from "@ant-design/icons";
-import styles from './RegistrationForm.module.scss'
+import styles from './ChangePassword.module.scss'
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
-import {registration, setData} from '../../model/auth.slice';
 import React, {useState} from 'react';
 import useForm from "antd/es/form/hooks/useForm";
+import {changePassword, registration, setData} from "@pages/auth/model/auth.slice";
 
 const {Text} = Typography;
-export const RegistrationForm = () => {
+export const ChangePassword = () => {
     const dispatch = useAppDispatch();
     const [form] = useForm();
     const [disabledSave, setDisabledSave] = useState(true);
@@ -19,27 +18,21 @@ export const RegistrationForm = () => {
 
     const onFinish = (values: any) => {
         dispatch(setData(values))
-        dispatch(registration())
+        dispatch(changePassword())
     };
-    return (
-
-
+    return <div className={styles.wrapper}><Text style={{fontSize: " 24px", fontWeight: "500"}}>Восстановление
+        аккаунта</Text>
         <Form
             form={form}
             onFieldsChange={handleFormChange}
 
             initialValues={{
-                email: '',
                 password: '',
                 passwordConfirm: ''
             }}
             onFinish={onFinish}
             className={styles.form}>
             <div>
-                <Form.Item rules={[{required: true, message: ""}, {type: 'email', message: ""}]}
-                           name={'email'}>
-                    <Input addonBefore='e-mail:' data-test-id='registration-email' size={'large'}/>
-                </Form.Item>
 
                 <Form.Item rules={[{
                     required: true,
@@ -50,7 +43,7 @@ export const RegistrationForm = () => {
                                латинских букв с заглавной и цифрой</Text>}
                            name={'password'}>
                     <Input.Password size={'large'}
-                                    data-test-id='registration-password'
+                                    data-test-id='change-password'
                                     placeholder='Пароль'
                                     help={'Пароль не менее 8 латинских букв с заглавной и цифрой'}
 
@@ -73,7 +66,7 @@ export const RegistrationForm = () => {
                 ]}
                            name={'passwordConfirm'}>
                     <Input.Password size={'large'} className={styles.passwordConfirm}
-                                    data-test-id='registration-confirm-password'
+                                    data-test-id='change-confirm-password'
                                     placeholder='Повторите пароль'
                                     help="Пароли не совпадают"></Input.Password>
                 </Form.Item>
@@ -84,23 +77,12 @@ export const RegistrationForm = () => {
                 <Form.Item>
                     <Button htmlType='submit' disabled={
                         disabledSave} className={styles.button}
-                            data-test-id='registration-submit-button'
+                            data-test-id='change-submit-button'
                             block type={'primary'}
                             size={'large'}>
-                        Войти
+                        Сохранить
                     </Button>
                 </Form.Item>
-                <Button
-                    block
-                    type={'default'}
-                    size={'large'}
-                    icon={<GooglePlusOutlined/>}
-
-                >
-                    Войти через Google
-                </Button>
             </div>
-        </Form>
-
-    );
+        </Form></div>
 };
