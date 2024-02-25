@@ -1,0 +1,32 @@
+.ant-tabs {
+    width: 100%;
+}
+
+.ant-tabs-tab {
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+
+}
+
+
+.ant-tabs-tab {
+    color: var(--character-light-title-85)
+}
+
+.ant-tabs-tab .ant-tabs-tab-active {
+    color: var(--primary-light-6);
+}
+ .ant-tabs-ink-bar-animated {
+    background: var(--primary-light-6);
+}
+
+.ant-tabs-nav-list {
+    width: 100%;
+}
+
+.ant-tabs-nav {
+    margin-bottom: 24px !important;
+}
+
+

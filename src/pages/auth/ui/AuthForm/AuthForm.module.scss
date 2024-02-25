@@ -1,0 +1,28 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+.rowForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    border: 1px solid var(--primary-light-6);
+    border-radius: 2px;
+    padding: 6px 15px;
+    background: var(--primary-light-6);
+}
+
+.text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    text-align: center;
+    color: var(--primary-light-6);
+}
