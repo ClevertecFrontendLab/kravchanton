@@ -4,16 +4,18 @@ import styles from './AuthForm.module.scss'
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
 import {checkEmail, login, setData} from '../../model/auth.slice';
 import React, {FC, useState} from "react";
+import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 
 export const AuthForm: FC = () => {
     const dispatch = useAppDispatch();
+    const breakpoint = useBreakpoint();
 
     type AuthFormType = {
         email: string,
         password: string,
         remember: boolean
     }
-const[email, setEmail] = useState('')
+    const [email, setEmail] = useState('')
 
 
     const onFinish = (values: AuthFormType): void => {
@@ -72,7 +74,7 @@ const[email, setEmail] = useState('')
             </div>
 
             <div className={styles.rowForm}>
-                <Form.Item style={{marginBottom: 0}} name={'remember'}  valuePropName="checked">
+                <Form.Item style={{marginBottom: 0}} name={'remember'} valuePropName="checked">
                     <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>
                 </Form.Item>
 
@@ -92,14 +94,21 @@ const[email, setEmail] = useState('')
                         Войти
                     </Button>
                 </Form.Item>
-                <Button
+                {breakpoint.xs ? <Button
+                    block
+                    type={'default'}
+                    size={'large'}
+                >
+                    Войти через Google
+                </Button> : <Button
                     block
                     type={'default'}
                     size={'large'}
                     icon={<GooglePlusOutlined/>}
                 >
                     Войти через Google
-                </Button>
+                </Button>}`
+
             </div>
         </Form>
 

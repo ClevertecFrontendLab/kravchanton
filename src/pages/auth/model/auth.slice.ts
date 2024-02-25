@@ -18,9 +18,9 @@ export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsTyp
         }
         dispatch(setIsLoggedIn(true))
         return response.data
-    } catch {
+    } catch (error) {
         history.push('/result/error-login', {state: history.location.pathname});
-        dispatch(setlsLoading(false))
+        return rejectWithValue(error)
     } finally {
         dispatch(setIsLoading(false))
     }
@@ -46,6 +46,8 @@ export const registration = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginPa
             history.push('/result/error', {state: history.location.pathname});
 
         }
+        return rejectWithValue(error)
+
 
     } finally {
         dispatch(setIsLoading(false))
@@ -67,6 +69,8 @@ export const checkEmail = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginPara
         } else {
             history.push("/result/error-check-email", {state: history.location.pathname});
         }
+        return rejectWithValue(error)
+
     } finally {
         dispatch(setIsLoading(false))
     }
@@ -82,6 +86,8 @@ export const confirmEmail = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginPa
         return response.data
     } catch (error) {
         dispatch(setError(true))
+        return rejectWithValue(error)
+
     } finally {
         dispatch(setIsLoading(false))
     }
@@ -101,6 +107,8 @@ export const changePassword = createAppAsyncThunk<{ isLoggedIn: boolean }, Login
     } catch (error) {
         console.log(error)
         error && history.push('/result/error-change-password', {state: history.location.pathname});
+        return rejectWithValue(error)
+
     } finally {
         dispatch(setIsLoading(false))
     }
