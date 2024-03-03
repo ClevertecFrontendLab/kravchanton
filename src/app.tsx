@@ -4,7 +4,7 @@ import {Navigate, Route, Routes} from 'react-router-dom';
 import {useSelector} from "react-redux";
 import {Loader} from "@components/Loader/Loader";
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
-import {setIsLoggedIn} from "@pages/auth/model/auth.slice";
+import {setAccessToken, setIsLoggedIn} from "@pages/auth/model/auth.slice";
 import {MainPage} from "@pages/main-page";
 import {ResultAuth} from "@components/Results/ResultAuth";
 import {CheckEmail} from "@components/CheckEmail/CheckEmail";
@@ -12,11 +12,16 @@ import {LayoutResult} from "@components/LayoutResult/LayoutResult";
 import {Layout} from "@components/Layout/Layout";
 import {ChangePassword} from "@components/ChangePassword/ChangePassword";
 import {Spin} from "antd";
+import {MainPageContent} from "@pages/main-page/MainPageContent";
+import {FeedbackPage} from "@pages/feedback/ui/feedback-page";
+import {history} from "@redux/configure-store";
 
 
 export const App = () => {
     const isLoading = useSelector(state => state.auth.isLoading)
     const dispatch = useAppDispatch()
+    const accessToken = useSelector((state) => state.auth.accessToken);
+
     const results = [
         {
             id: 1,
@@ -93,9 +98,13 @@ export const App = () => {
     ]
 
     useEffect(() => {
-        console.log(localStorage.token)
         dispatch(setIsLoggedIn(!!localStorage.token))
-        ;
+        localStorage.token && dispatch(setAccessToken(localStorage.token))
+        if (!localStorage.token && !accessToken) history.push('/auth')
+        else if (setIsLoggedIn || localStorage.token) {
+            history.location.pathname !== "/auth" ? history.push(history.location.pathname) : history.push('/main')
+        }
+
     }, []);
     return <>
         <Spin spinning={isLoading} indicator={<Loader/>}/>
@@ -108,7 +117,10 @@ export const App = () => {
                 <Route path='confirm-email' element={<CheckEmail/>}/>
                 <Route path='change-password' element={<ChangePassword/>}/>
             </Route>
-            <Route path='/main' element={<MainPage/>}>
+            <Route path={'/'} element={<MainPage/>}>
+                <Route path='main' element={<MainPageContent/>}/>
+                <Route path='feedback' element={<FeedbackPage/>}/>
+
             </Route>
 
             <Route path='/result' element={<LayoutResult/>}>

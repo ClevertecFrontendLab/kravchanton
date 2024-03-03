@@ -17,6 +17,7 @@ export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsTyp
             localStorage.token = response.data.accessToken;
         }
         dispatch(setIsLoggedIn(true))
+        history.push('/main')
         return response.data
     } catch (error) {
         history.push('/result/error-login', {state: history.location.pathname});
@@ -146,12 +147,16 @@ const AuthSlice = createSlice({
         setIsLogout(state: AuthType) {
             localStorage.clear()
             state.isLoggedIn = false
+            history.push('/auth')
         },
         setIsLoading(state: AuthType, action) {
             state.isLoading = action.payload
         },
         setError(state: AuthType, action) {
             state.error = action.payload
+        } ,
+        setAccessToken(state: AuthType, action) {
+            state.accessToken = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -163,6 +168,6 @@ const AuthSlice = createSlice({
 
     },
 });
-export const {setIsLoggedIn, setIsLogout, setData, setError, setIsLoading} = AuthSlice.actions;
+export const {setIsLoggedIn, setIsLogout, setData, setError, setIsLoading, setAccessToken} = AuthSlice.actions;
 
 export const authSlice = AuthSlice.reducer;

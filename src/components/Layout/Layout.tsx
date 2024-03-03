@@ -4,7 +4,6 @@ import {Wrapper} from "@components/Wrapper/Wrapper";
 
 
 export const Layout = () => {
-
     return <>
         <div className={styles.wrapper}>
             <div className={styles.blur}>
