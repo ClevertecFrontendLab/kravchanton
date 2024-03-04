@@ -1,0 +1,13 @@
+.wrapperHeader {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: end;
+    & p {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 130%;
+        text-align: right;
+        color: var(--character-light-disable-25);
+    }
+}

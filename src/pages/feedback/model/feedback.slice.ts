@@ -11,8 +11,8 @@ export const fetchFeedback = createAppAsyncThunk<any>("feedback/fetchFeedback", 
     dispatch(setIsLoading(true))
     try {
         const response = await feedbackAPI.fetchFeedback()
-        console.log(response)
-        return response.data
+        dispatch(setFeedback(response.data))
+        console.log(response.data)
     } catch (error) {
         history.push('/result/error-login', {state: history.location.pathname});
         return rejectWithValue(error)
@@ -22,7 +22,7 @@ export const fetchFeedback = createAppAsyncThunk<any>("feedback/fetchFeedback", 
 })
 
 
-type FeedbackType = {
+export type FeedbackType = {
     "id": string ,
     "fullName": string,
     "imageSrc": string,
@@ -36,7 +36,7 @@ const FeedbackSlice = createSlice({
     initialState,
     reducers: {
         setFeedback(state: FeedbackType, action) {
-            state = action.payload
+            return action.payload
         },}
 
 });

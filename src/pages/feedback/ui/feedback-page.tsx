@@ -1,27 +1,18 @@
-import {HeaderContent} from "@components/HeaderContent/HeaderContent";
-import {FooterContent} from "@components/FooterContent/FooterContent";
-import React, {useEffect} from "react";
-import {MainContent} from "@components/MainContent/MainContent";
+import React from "react";
 import {Layout} from "antd";
-import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
-import {fetchFeedback} from "@pages/feedback/model/feedback.slice";
+import {HeaderFeedback} from "@components/HeaderFeedback/HeaderFeedback";
+import {FeedbackMain} from "@pages/feedback/ui/FeedbackMain/FeedbackMain";
 
-const {Footer, Header, Content} = Layout;
+const { Header, Content} = Layout;
 
 export const FeedbackPage = () => {
-    const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        dispatch(fetchFeedback())
-    }, [])
     return <>
         <Header>
-            <HeaderContent/>
+            <HeaderFeedback/>
         </Header>
         <Content>
-            <MainContent/>
+            <FeedbackMain/>
         </Content>
-        <Footer>
-            <FooterContent/>
-        </Footer></>
+   </>
 }
