@@ -119,7 +119,7 @@ export const App = () => {
             </Route>
             <Route path={'/'} element={<MainPage/>}>
                 <Route path='main' element={<MainPageContent/>}/>
-                <Route path='feedback' element={<FeedbackPage/>}/>
+                <Route path='feedbacks' element={<FeedbackPage/>}/>
 
             </Route>
 

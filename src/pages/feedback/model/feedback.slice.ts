@@ -25,8 +25,9 @@ export const postFeedback = createAppAsyncThunk<any>("feedback/fetchFeedback", a
     try {
         await feedbackAPI.postFeedback(data)
         dispatch(setFeedbackNew({...data, createdAt: new Date()}))
+        dispatch(setModalSuccess(true))
     } catch (error) {
-        dispatch(setErrorGetFeedback(true));
+        dispatch(setModalErrorPost(true));
         return rejectWithValue(error)
     } finally {
         dispatch(setIsLoading(false))
@@ -37,6 +38,8 @@ export const postFeedback = createAppAsyncThunk<any>("feedback/fetchFeedback", a
 export type FeedbackType = {
     data: FeedbackData[],
     modalError: boolean
+    modalSuccess: boolean
+    modalErrorPost: boolean
 
 }
 export type FeedbackData = {
@@ -49,7 +52,9 @@ export type FeedbackData = {
 }
 const initialState: FeedbackType = {
     data: [],
-    modalError: false
+    modalError: false,
+    modalSuccess: false,
+    modalErrorPost: false
 }
 const FeedbackSlice = createSlice({
     name: "feedback",
@@ -61,6 +66,12 @@ const FeedbackSlice = createSlice({
         setErrorGetFeedback(state: FeedbackType, action) {
             state.modalError = action.payload
         },
+        setModalSuccess(state: FeedbackType, action) {
+            state.modalSuccess = action.payload
+        },
+        setModalErrorPost(state: FeedbackType, action) {
+            state.modalErrorPost = action.payload
+        },
         setFeedbackNew(state: FeedbackType, action) {
            return {...state, data: [action.payload, ...state.data]}
         },
@@ -68,6 +79,6 @@ const FeedbackSlice = createSlice({
 
 
 });
-export const {setFeedback, setErrorGetFeedback, setFeedbackNew} = FeedbackSlice.actions;
+export const {setFeedback, setErrorGetFeedback, setFeedbackNew, setModalSuccess, setModalErrorPost} = FeedbackSlice.actions;
 
 export const feedbackSlice = FeedbackSlice.reducer;

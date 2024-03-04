@@ -17,6 +17,9 @@ export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsTyp
             localStorage.token = response.data.accessToken;
         }
         dispatch(setIsLoggedIn(true))
+        sessionStorage.token = response.data.accessToken;
+        dispatch(setAccessToken(response.data.accessToken))
+
         history.push('/main')
         return response.data
     } catch (error) {

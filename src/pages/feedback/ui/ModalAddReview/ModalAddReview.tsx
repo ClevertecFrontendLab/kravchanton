@@ -6,18 +6,18 @@ import {useState} from "react";
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
 import {postFeedback} from "@pages/feedback/model/feedback.slice";
 
-export const ModalAddReview = ({addReviewModal, closeModalAddReview}) => {
+export const ModalAddReview = ({addReviewModal, closeModalAddReview, message, setMessage,rating, setRating }) => {
     const dispatch = useAppDispatch();
 
-    const [message, setMessage] = useState<string>('')
-    const [rating, setRating] = useState<number>(0)
+
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setMessage(e.target.value);
-        closeModalAddReview()
     };
     const postReview = () => {
 
         dispatch(postFeedback({message, rating}))
+        closeModalAddReview()
+
     }
     return <><Modal title={<p className={styles.title}> Ваш отзыв</p>} open={addReviewModal}
                     footer={<Button
@@ -47,7 +47,7 @@ export const ModalAddReview = ({addReviewModal, closeModalAddReview}) => {
                 }
                 style={{fontSize: '20px'}}
             />
-            <TextArea rows={2} placeholder="Autosize height based on content lines"
+            <TextArea value={message} rows={2} placeholder="Autosize height based on content lines"
                       onChange={onChange}/>
         </div>
 

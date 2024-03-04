@@ -11,7 +11,7 @@ export const ModalError = ({modalError}: boolean) => {
         dispatch(setErrorGetFeedback(false))
         history.push('/main')
     }
-   return <Modal footer={null} closable={false} open={modalError}>
+    return <Modal footer={null} closable={false} open={modalError}>
         <Result
             status="500"
             title="Что-то пошло не так"

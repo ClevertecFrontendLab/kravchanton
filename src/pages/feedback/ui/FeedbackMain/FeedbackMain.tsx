@@ -6,15 +6,18 @@ import {useEffect, useState} from "react";
 import {FeedbackType, fetchFeedback} from "@pages/feedback/model/feedback.slice";
 import {RootState} from "@redux/configure-store";
 import {Button} from "antd";
-import {ModalError} from "@pages/feedback/ui/ModalError";
 import {ModalAddReview} from "@pages/feedback/ui/ModalAddReview/ModalAddReview";
+import {ModalError} from "@pages/feedback/ui/ModalError/ModalError";
+import {ModalSuccess} from "@pages/feedback/ui/ModalCuccess/ModalSuccess";
+import {ModalErrorPost} from "@pages/feedback/ui/ModalErrorPost/ModalErrorPost";
 
 export const FeedbackMain = () => {
     const [ShowFullReviews, setShowFullReviews] = useState(false)
     const [addReviewModal, setAddReviewModal] = useState(false)
     const dispatch = useAppDispatch()
-    const {data, modalError} = useSelector<RootState, FeedbackType>(state => state.feedback)
-
+    const {data, modalError, modalSuccess, modalErrorPost} = useSelector<RootState, FeedbackType>(state => state.feedback)
+    const [message, setMessage] = useState<string>('')
+    const [rating, setRating] = useState<number>(0)
     useEffect(() => {
         dispatch(fetchFeedback())
     }, [])
@@ -73,6 +76,8 @@ export const FeedbackMain = () => {
     </div>}
         < ModalError modalError={modalError}
         />
-        <ModalAddReview addReviewModal={addReviewModal} closeModalAddReview={closeModalAddReview}/>
+        <ModalAddReview message={message} setMessage={setMessage} rating={rating} setRating={setRating} addReviewModal={addReviewModal} closeModalAddReview={closeModalAddReview}/>
+        <ModalSuccess modalSuccess={modalSuccess}/>
+        <ModalErrorPost modalErrorPost={modalErrorPost} setAddReviewModal={setAddReviewModal}/>
     </>
 }
