@@ -5,11 +5,12 @@ export const feedbackAPI = {
     fetchFeedback() {
         return instance.get("feedback");
     },
+    postFeedback(data:FeedbackParamsType ) {
+        return instance.post("feedback", data);
+    },
 };
 
-export type LoginParamsType = {
-    email: string;
-    password?: string;
-    confirmPassword?: string
-    code?: string
-};
+export type FeedbackParamsType ={
+    "message": "string",
+    "rating": number
+}

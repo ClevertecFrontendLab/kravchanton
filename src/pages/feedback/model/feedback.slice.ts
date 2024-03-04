@@ -12,9 +12,21 @@ export const fetchFeedback = createAppAsyncThunk<any>("feedback/fetchFeedback", 
     try {
         const response = await feedbackAPI.fetchFeedback()
         dispatch(setFeedback(response.data))
-        console.log(response.data)
     } catch (error) {
-        history.push('/result/error-login', {state: history.location.pathname});
+        dispatch(setErrorGetFeedback(true));
+        return rejectWithValue(error)
+    } finally {
+        dispatch(setIsLoading(false))
+    }
+})
+export const postFeedback = createAppAsyncThunk<any>("feedback/fetchFeedback", async (data, thunkAPI) => {
+    const {dispatch, rejectWithValue} = thunkAPI;
+    dispatch(setIsLoading(true))
+    try {
+        await feedbackAPI.postFeedback(data)
+        dispatch(setFeedbackNew({...data, createdAt: new Date()}))
+    } catch (error) {
+        dispatch(setErrorGetFeedback(true));
         return rejectWithValue(error)
     } finally {
         dispatch(setIsLoading(false))
@@ -23,23 +35,39 @@ export const fetchFeedback = createAppAsyncThunk<any>("feedback/fetchFeedback", 
 
 
 export type FeedbackType = {
-    "id": string ,
+    data: FeedbackData[],
+    modalError: boolean
+
+}
+export type FeedbackData = {
+    "id": string,
     "fullName": string,
     "imageSrc": string,
     "message": string,
     "rating": number,
     "createdAt": string
 }
-const initialState: FeedbackType[] = []
+const initialState: FeedbackType = {
+    data: [],
+    modalError: false
+}
 const FeedbackSlice = createSlice({
     name: "feedback",
     initialState,
     reducers: {
         setFeedback(state: FeedbackType, action) {
-            return action.payload
-        },}
+            state.data = action.payload
+        },
+        setErrorGetFeedback(state: FeedbackType, action) {
+            state.modalError = action.payload
+        },
+        setFeedbackNew(state: FeedbackType, action) {
+           return {...state, data: [action.payload, ...state.data]}
+        },
+    }
+
 
 });
-export const {setFeedback} = FeedbackSlice.actions;
+export const {setFeedback, setErrorGetFeedback, setFeedbackNew} = FeedbackSlice.actions;
 
 export const feedbackSlice = FeedbackSlice.reducer;

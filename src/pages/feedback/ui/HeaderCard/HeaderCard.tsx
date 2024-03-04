@@ -8,9 +8,13 @@ export const HeaderCard = ({rating, createdAt}) => {
         defaultValue={rating}
         character={({value, index}) =>
             value && index !== undefined && index < value ? (
-                <StarFilled/>
+                <StarFilled style={{
+                    color: 'var(--character-light-warning)'
+                }}/>
             ) : (
-                <StarOutlined/>
+                <StarOutlined style={{
+                    color: 'var(--character-light-warning)'
+                }}/>
             )
         }
         style={{fontSize: '14px'}}

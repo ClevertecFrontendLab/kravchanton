@@ -9,7 +9,7 @@ const handlerNavigate = () => {
 
 }
 export const FooterContent = () => <div className={styles.container}>
-    <Button type={'link'} size={'large'} onClick={handlerNavigate} style={{color: "var(--primary-light-6)"}}>Смотреть
+    <Button type={'link'} size={'large'} onClick={handlerNavigate} style={{color: "var(--primary-light-6)"}} data-test-id='see-reviews'>Смотреть
         отзывы</Button>
     <div className={styles.card}><FooterCard/></div>
 </div>
