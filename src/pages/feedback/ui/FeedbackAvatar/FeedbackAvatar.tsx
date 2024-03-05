@@ -2,8 +2,13 @@ import {Avatar} from "antd";
 import {UserOutlined} from "@ant-design/icons";
 import styles from './FeedbackAvatar.module.scss'
 
-export const FeedbackAvatar = ({imageSrc, fullName}) => {
-    return <div className={styles.wrapper}> <Avatar
+type FeedbackAvatarType = {
+    imageSrc: string,
+    fullName: string
+}
+
+export const FeedbackAvatar: React.FC = ({imageSrc, fullName}: FeedbackAvatarType) => {
+    return <div className={styles.wrapper}><Avatar
         alt='author'
         src={imageSrc}
         icon={<UserOutlined/>}

@@ -11,6 +11,7 @@ import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
 import {setIsLogout} from "@pages/auth/model/auth.slice";
 import {Outlet} from "react-router-dom";
 import {history} from "@redux/configure-store";
+import {paths} from "@utils/constants/paths";
 
 
 const { Sider} = Layout;
@@ -24,7 +25,7 @@ export const MainPage: React.FC = () => {
 
     const logout = () => {
         dispatch(setIsLogout())
-        history.push('/auth')
+        history.push(paths.auth)
 
     }
 

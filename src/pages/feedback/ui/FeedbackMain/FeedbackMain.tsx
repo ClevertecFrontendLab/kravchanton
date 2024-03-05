@@ -12,7 +12,7 @@ import {ModalSuccess} from "@pages/feedback/ui/ModalCuccess/ModalSuccess";
 import {ModalErrorPost} from "@pages/feedback/ui/ModalErrorPost/ModalErrorPost";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 
-export const FeedbackMain = () => {
+export const FeedbackMain: React.FC = () => {
     const [ShowFullReviews, setShowFullReviews] = useState(false)
     const [addReviewModal, setAddReviewModal] = useState(false)
     const dispatch = useAppDispatch()
@@ -22,8 +22,8 @@ export const FeedbackMain = () => {
         modalSuccess,
         modalErrorPost
     } = useSelector<RootState, FeedbackType>(state => state.feedback)
-    const [message, setMessage] = useState<string>('')
-    const [rating, setRating] = useState<number>(0)
+    const [message, setMessage] = useState('')
+    const [rating, setRating] = useState(0)
     const breakpoint = useBreakpoint();
 
     useEffect(() => {

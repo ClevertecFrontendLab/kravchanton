@@ -43,12 +43,12 @@ export type FeedbackType = {
 
 }
 export type FeedbackData = {
-    "id": string,
-    "fullName": string,
-    "imageSrc": string,
-    "message": string,
-    "rating": number,
-    "createdAt": string
+    id: string,
+    fullName: string,
+    imageSrc: string,
+    message: string,
+    rating: number,
+    createdAt: string
 }
 const initialState: FeedbackType = {
     data: [],
@@ -73,12 +73,18 @@ const FeedbackSlice = createSlice({
             state.modalErrorPost = action.payload
         },
         setFeedbackNew(state: FeedbackType, action) {
-           return {...state, data: [action.payload, ...state.data]}
+            return {...state, data: [action.payload, ...state.data]}
         },
     }
 
 
 });
-export const {setFeedback, setErrorGetFeedback, setFeedbackNew, setModalSuccess, setModalErrorPost} = FeedbackSlice.actions;
+export const {
+    setFeedback,
+    setErrorGetFeedback,
+    setFeedbackNew,
+    setModalSuccess,
+    setModalErrorPost
+} = FeedbackSlice.actions;
 
 export const feedbackSlice = FeedbackSlice.reducer;

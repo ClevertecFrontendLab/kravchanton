@@ -4,6 +4,7 @@ import {Button, Result} from 'antd';
 import {history} from "@redux/configure-store";
 import {changePassword, checkEmail, registration} from "@pages/auth/model/auth.slice";
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
+import {paths} from "@utils/constants/paths";
 
 type ResultError = {
     status: string,
@@ -17,7 +18,7 @@ export const ResultAuth: FC = ({status, title, subTitle,  button, testId}: Resul
 
     const handleButton = () => {
         if(status == "success") {
-            history.push('/auth')
+            history.push(paths.auth)
         }
         else if (testId == 'registration-retry-button') {
             history.back();

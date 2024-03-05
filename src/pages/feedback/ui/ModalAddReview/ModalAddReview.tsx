@@ -2,19 +2,27 @@ import {Button, Modal, Rate} from "antd";
 import styles from './ModalAddReview.module.scss'
 import {StarFilled, StarOutlined} from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
-import {useState} from "react";
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
 import {postFeedback} from "@pages/feedback/model/feedback.slice";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 
-export const ModalAddReview = ({
-                                   addReviewModal,
-                                   closeModalAddReview,
-                                   message,
-                                   setMessage,
-                                   rating,
-                                   setRating
-                               }) => {
+type ModalAddReviewType = {
+    message: string,
+    setMessage: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+    rating: number,
+    setRating: (value: number) => void
+    addReviewModal: boolean
+    closeModalAddReview: () => void
+}
+
+export const ModalAddReview: React.FC = ({
+                                             addReviewModal,
+                                             closeModalAddReview,
+                                             message,
+                                             setMessage,
+                                             rating,
+                                             setRating
+                                         }: ModalAddReviewType) => {
     const dispatch = useAppDispatch();
     const breakpoint = useBreakpoint();
 
@@ -30,6 +38,7 @@ export const ModalAddReview = ({
     }
     return <><Modal title={<p className={styles.title}> Ваш отзыв</p>}
                     open={addReviewModal}
+                    width={breakpoint.xs ? "auto" : 520}
                     footer={<Button
                         type='primary'
                         size='large'
@@ -42,7 +51,8 @@ export const ModalAddReview = ({
 
                     >
                         Опубликовать
-                    </Button>} onCancel={closeModalAddReview}>
+                    </Button>}
+                    onCancel={closeModalAddReview}>
         <div className={styles.wrapper}>
             <Rate
                 onChange={setRating}
@@ -60,7 +70,9 @@ export const ModalAddReview = ({
                 }
                 style={{fontSize: '20px'}}
             />
-            <TextArea value={message} rows={2} placeholder="Autosize height based on content lines"
+            <TextArea value={message}
+                      rows={2}
+                      placeholder="Autosize height based on content lines"
                       onChange={onChange}/>
         </div>
 

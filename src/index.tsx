@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import './index.css';
 import {App} from "./app";
 import {HistoryRouter} from "redux-first-history/rr6";
+import {ConfigProvider} from "antd";
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
@@ -14,7 +15,17 @@ root.render(
     <React.StrictMode>
         <Provider store={store}>
             <HistoryRouter history={history}>
-                <App/>
+                <ConfigProvider
+                    theme={{
+                        components: {
+                            Result: {
+                                iconFontSize: 1000
+                            },
+                        },
+                    }}
+                >
+                    <App/>
+                </ConfigProvider>
             </HistoryRouter>
         </Provider>
     </React.StrictMode>,

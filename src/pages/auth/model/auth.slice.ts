@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {createAppAsyncThunk} from "@utils/create-app-async-thunk";
 import {authAPI, LoginParamsType} from "@pages/auth/api/auth.api";
 import {history} from './../../../redux/configure-store';
+import {paths} from "@utils/constants/paths";
 
 
 export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsType>("auth/login", async ({
@@ -20,7 +21,7 @@ export const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParamsTyp
         sessionStorage.token = response.data.accessToken;
         dispatch(setAccessToken(response.data.accessToken))
 
-        history.push('/main')
+        history.push(paths.main)
         return response.data
     } catch (error) {
         history.push('/result/error-login', {state: history.location.pathname});

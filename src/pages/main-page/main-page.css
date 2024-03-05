@@ -82,7 +82,9 @@
     }
     .ant-modal {
         margin: 16px;
-        width: auto !important;
+    }
+    .ant-result {
+        padding: 0;
     }
 
 }
