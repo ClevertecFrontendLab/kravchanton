@@ -10,14 +10,22 @@ import {ModalAddReview} from "@pages/feedback/ui/ModalAddReview/ModalAddReview";
 import {ModalError} from "@pages/feedback/ui/ModalError/ModalError";
 import {ModalSuccess} from "@pages/feedback/ui/ModalCuccess/ModalSuccess";
 import {ModalErrorPost} from "@pages/feedback/ui/ModalErrorPost/ModalErrorPost";
+import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 
 export const FeedbackMain = () => {
     const [ShowFullReviews, setShowFullReviews] = useState(false)
     const [addReviewModal, setAddReviewModal] = useState(false)
     const dispatch = useAppDispatch()
-    const {data, modalError, modalSuccess, modalErrorPost} = useSelector<RootState, FeedbackType>(state => state.feedback)
+    const {
+        data,
+        modalError,
+        modalSuccess,
+        modalErrorPost
+    } = useSelector<RootState, FeedbackType>(state => state.feedback)
     const [message, setMessage] = useState<string>('')
     const [rating, setRating] = useState<number>(0)
+    const breakpoint = useBreakpoint();
+
     useEffect(() => {
         dispatch(fetchFeedback())
     }, [])
@@ -43,7 +51,10 @@ export const FeedbackMain = () => {
                 size='large'
                 onClick={() => setAddReviewModal(true)}
                 data-test-id='write-review'
-                style={{background: " var(--primary-light-6)"}}
+                style={{
+                    background: " var(--primary-light-6)",
+                    width: `${breakpoint.xs ? "100%" : "auto"}`
+                }}
 
             >
                 Написать отзыв
@@ -53,7 +64,10 @@ export const FeedbackMain = () => {
                 size={'large'}
                 onClick={() => setShowFullReviews(prev => !prev)}
                 data-test-id='all-reviews-button'
-                style={{color: "var(--primary-light-6)"}}
+                style={{
+                    color: "var(--primary-light-6)",
+                    width: `${breakpoint.xs ? "100%" : "auto"}`
+                }}
             >
                 {ShowFullReviews ? 'Свернуть все отзывы' : 'Развернуть все отзывы'}
             </Button></div>
@@ -67,8 +81,12 @@ export const FeedbackMain = () => {
             type='primary'
             size='large'
             onClick={() => setAddReviewModal(true)}
+
             data-test-id='write-review'
-            style={{background: " var(--primary-light-6)"}}
+            style={{
+                background: " var(--primary-light-6)",
+                width: `${breakpoint.xs ? "100%" : "auto"}`
+            }}
 
         >
             Написать отзыв
@@ -76,7 +94,9 @@ export const FeedbackMain = () => {
     </div>}
         < ModalError modalError={modalError}
         />
-        <ModalAddReview message={message} setMessage={setMessage} rating={rating} setRating={setRating} addReviewModal={addReviewModal} closeModalAddReview={closeModalAddReview}/>
+        <ModalAddReview message={message} setMessage={setMessage} rating={rating}
+                        setRating={setRating} addReviewModal={addReviewModal}
+                        closeModalAddReview={closeModalAddReview}/>
         <ModalSuccess modalSuccess={modalSuccess}/>
         <ModalErrorPost modalErrorPost={modalErrorPost} setAddReviewModal={setAddReviewModal}/>
     </>

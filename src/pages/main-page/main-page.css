@@ -80,5 +80,9 @@
         padding: 0 16px 42px 16px;
 
     }
+    .ant-modal {
+        margin: 16px;
+        width: auto !important;
+    }
 
 }

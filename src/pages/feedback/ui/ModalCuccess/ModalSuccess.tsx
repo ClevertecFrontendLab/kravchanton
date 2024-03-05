@@ -13,7 +13,10 @@ export const ModalSuccess = ({modalSuccess}) => {
         <Result
             status="success"
             title="Отзыв успешно опубликован"
-            extra={<Button onClick={handleClose} type="primary">Отлично</Button>}
+            extra={<Button onClick={handleClose} style={{
+                background: " var(--primary-light-6)",
+                width: "100%"
+            }} size={'large'} type="primary">Отлично</Button>}
         />
     </Modal>
 }

@@ -101,6 +101,7 @@ export const AuthForm: FC = () => {
                 >
                     Войти через Google
                 </Button> : <Button
+                    onClick={()=> window.location.href = 'https://marathon-api.clevertec.ru/auth/google'}
                     block
                     type={'default'}
                     size={'large'}

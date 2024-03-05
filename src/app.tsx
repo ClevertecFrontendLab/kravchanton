@@ -21,7 +21,13 @@ export const App = () => {
     const isLoading = useSelector(state => state.auth.isLoading)
     const dispatch = useAppDispatch()
     const accessToken = useSelector((state) => state.auth.accessToken);
-
+    const accessTokenFromGoogle = new URLSearchParams(window.location.search).get('accessToken');
+    if (accessTokenFromGoogle) {
+        localStorage.token = accessTokenFromGoogle;
+        dispatch(setIsLoggedIn(true))
+        sessionStorage.token = accessTokenFromGoogle;
+        dispatch(setAccessToken(accessTokenFromGoogle))
+    }
     const results = [
         {
             id: 1,

@@ -59,3 +59,31 @@
     display: flex;
     justify-content: center;
 }
+@media (max-width: 576px) {
+    .contentWrap {
+        padding: 16px;
+        gap: 48px;
+    }
+    .buttons {
+        flex-direction: column;
+        height: 128px;
+        padding-top: 32px;
+        gap: 16px;
+    }
+    .cards {
+        gap: 16px;
+    }
+    .emptyCard {
+        padding: 48px 32px;
+        height: auto;
+        gap: 48px;
+        margin-top: 8px;
+
+        & span {
+            width: auto;
+        }
+
+    }
+
+
+}

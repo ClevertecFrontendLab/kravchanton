@@ -10,6 +10,7 @@ import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
 import {setIsLogout} from "@pages/auth/model/auth.slice";
 import {Outlet} from "react-router-dom";
+import {history} from "@redux/configure-store";
 
 
 const { Sider} = Layout;
@@ -21,7 +22,11 @@ export const MainPage: React.FC = () => {
 
     const dispatch =useAppDispatch()
 
-    const logout = () => dispatch(setIsLogout())
+    const logout = () => {
+        dispatch(setIsLogout())
+        history.push('/auth')
+
+    }
 
     return <>
             <Layout className={'wrapper'}>

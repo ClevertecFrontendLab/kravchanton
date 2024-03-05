@@ -12,9 +12,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     font-weight: 400;
     font-size: 16px;
     line-height: 130%;
     color: var(--character-light-title-85);
+}
+
+@media (max-width: 576px) {
+    .wrapper {
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+        width: auto;
+        height: auto;
+    }
+    .name {
+        align-items: start;
+    }
+
 }

@@ -149,8 +149,9 @@ const AuthSlice = createSlice({
         },
         setIsLogout(state: AuthType) {
             localStorage.clear()
+            sessionStorage.clear()
             state.isLoggedIn = false
-            history.push('/auth')
+            state.accessToken = ''
         },
         setIsLoading(state: AuthType, action) {
             state.isLoading = action.payload
