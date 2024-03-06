@@ -14,7 +14,7 @@ export const Trigger: React.FC = ({ collapsed, setCollapsed }: TrigerType) => {
             onClick={setCollapsed}
             data-test-id={breakpoints.md ? 'sider-switch' : 'sider-switch-mobile'}
         >
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            {collapsed ? (<MenuUnfoldOutlined />) : (<MenuFoldOutlined />)}
         </div>
     );
 };

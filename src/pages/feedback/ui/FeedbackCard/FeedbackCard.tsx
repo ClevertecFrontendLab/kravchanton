@@ -18,7 +18,7 @@ export const FeedbackCard = ({
     const breakpoint = useBreakpoint();
     return <Card>
         <Meta
-            avatar={breakpoint.xs ? '' : <FeedbackAvatar imageSrc={imageSrc} fullName={fullName}/>}
+            avatar={breakpoint.xs ? ('') : (<FeedbackAvatar imageSrc={imageSrc} fullName={fullName}/>)}
             title={<HeaderCard rating={rating}
                                createdAt={createdAt}
                                imageSrc={imageSrc}

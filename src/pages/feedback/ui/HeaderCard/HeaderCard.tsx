@@ -14,7 +14,7 @@ type HeaderCard = {
 export const HeaderCard: React.FC = ({rating, createdAt, imageSrc, fullName}: HeaderCard) => {
     const breakpoint = useBreakpoint();
     return <div className={styles.container}>
-        {breakpoint.xs ? <FeedbackAvatar imageSrc={imageSrc} fullName={fullName}/> : ''}
+        {breakpoint.xs ? (<FeedbackAvatar imageSrc={imageSrc} fullName={fullName}/>) : ('')}
         <div className={styles.wrapperHeader}>
             <Rate
                 disabled

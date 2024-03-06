@@ -14,22 +14,22 @@ export const NavigationMenu: React.FC = () => {
     const items: ItemType[] = [
         {
             key: "1",
-            icon: breakpoint.xs ? '' : <CalendarOutlined style={{ color: 'var(--primary-light-9)' }} />,
+            icon: breakpoint.xs ? ('') : (<CalendarOutlined style={{ color: 'var(--primary-light-9)' }} />),
             label: 'Календарь',
         },
         {
             key: "2",
-            icon: breakpoint.xs ? '' : <HeartFilled style={{ color: 'var(--primary-light-9)' }} />,
+            icon: breakpoint.xs ? ('') : (<HeartFilled style={{ color: 'var(--primary-light-9)' }} />),
             label: 'Тренировки',
         },
         {
             key: "3",
-            icon: breakpoint.xs ? '' : <TrophyFilled style={{ color: 'var(--primary-light-9)' }} />,
+            icon: breakpoint.xs ? ('') : (<TrophyFilled style={{ color: 'var(--primary-light-9)' }} />),
             label: 'Достижения',
         },
         {
             key: "4",
-            icon: breakpoint.xs ? '' : <IdcardOutlined style={{ color: 'var(--primary-light-9)' }} />,
+            icon: breakpoint.xs ? ('') : (<IdcardOutlined style={{ color: 'var(--primary-light-9)' }} />),
             label: 'Профиль',
         },
     ]

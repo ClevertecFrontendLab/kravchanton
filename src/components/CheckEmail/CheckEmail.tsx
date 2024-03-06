@@ -39,8 +39,8 @@ export const CheckEmail: FC = () => {
             inputProps={{'data-test-id': 'verification-input'}}
             classNames={{
                 container: styles.container,
-                character: error ? styles.characterRed : styles.character,
-                characterInactive: error ? styles.inactiveRed : styles.inactive,
+                character: error ? (styles.characterRed) : (styles.character),
+                characterInactive: error ? (styles.inactiveRed) : (styles.inactive),
                 characterSelected: "character--selected",
                 characterFilled: "character--filled",
             }}/>

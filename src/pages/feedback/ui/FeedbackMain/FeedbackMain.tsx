@@ -35,7 +35,7 @@ export const FeedbackMain: React.FC = () => {
     const sortedFeedbacks = data
         && [...data]
             .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-    const feedbacks = ShowFullReviews ? sortedFeedbacks : sortedFeedbacks?.slice(0, 4)
+    const feedbacks = ShowFullReviews ? (sortedFeedbacks) : (sortedFeedbacks?.slice(0, 4))
     return <> {feedbacks.length > 0 ? <div className={styles.contentWrap}>
         <div className={styles.cards}>
             {feedbacks.map(t => <FeedbackCard

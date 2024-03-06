@@ -3,7 +3,8 @@ import styles from './ChangePassword.module.scss'
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
 import React, {useState} from 'react';
 import useForm from "antd/es/form/hooks/useForm";
-import {changePassword, registration, setData} from "@pages/auth/model/auth.slice";
+import {changePassword, setData} from "@pages/auth/model/auth.slice";
+import {regularForValidation} from "@utils/constants/constants";
 
 const {Text} = Typography;
 export const ChangePassword: React.FC = () => {
@@ -37,7 +38,7 @@ export const ChangePassword: React.FC = () => {
                     required: true,
                     message: "Пароль не менее 8 латинских букв с заглавной и цифрой",
                     whiteSpace: true
-                }, {pattern: new RegExp(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}/g)}]}
+                }, {pattern: new RegExp(regularForValidation)}]}
                            help={<Text style={{fontSize: '12px'}} type="secondary">Пароль не менее 8
                                латинских букв с заглавной и цифрой</Text>}
                            name='password'>

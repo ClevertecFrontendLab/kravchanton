@@ -6,6 +6,7 @@ import {checkEmail, login, setData} from '../../model/auth.slice';
 import React, {FC, useState} from "react";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 import {paths} from "@utils/constants/paths";
+import {regular, regularForValidation} from "@utils/constants/constants";
 
 export const AuthForm: FC = () => {
     const dispatch = useAppDispatch();
@@ -16,9 +17,7 @@ export const AuthForm: FC = () => {
         remember: boolean
     }
     const [email, setEmail] = useState('')
-    const onFinish = (values: AuthFormType): void => {
-        dispatch(login(values))
-    };
+    const onFinish = (values: AuthFormType): void => dispatch(login(values))
     const HandleCheckEmail = () => {
         const data = {
             email,
@@ -42,7 +41,7 @@ export const AuthForm: FC = () => {
                     message: ""
                 }, {
                     validator(_, value) {
-                        if (String(value).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+                        if (String(value).toLowerCase().match(regular)) {
                             return Promise.resolve(setEmail(value));
                         } else {
                             return Promise.reject(setEmail(''));
@@ -57,7 +56,7 @@ export const AuthForm: FC = () => {
                 <Form.Item rules={[{
                     required: true,
                     message: ""
-                }, {pattern: new RegExp(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}/g)}]}
+                }, {pattern: new RegExp(regularForValidation)}]}
                            name='password' help=''>
                     <Input.Password size='large' placeholder='Пароль'
                                     data-test-id='login-password'></Input.Password>
@@ -84,20 +83,23 @@ export const AuthForm: FC = () => {
                         Войти
                     </Button>
                 </Form.Item>
-                {breakpoint.xs ? <Button
-                    block
-                    type='default'
-                    size='large'
-                >
-                    Войти через Google
-                </Button> : <Button
-                    onClick={() => window.location.href = paths.googleAuth}
-                    block
-                    type='default'
-                    size='large'
-                    icon={<GooglePlusOutlined/>}
-                > Войти через Google
-                </Button>}`
+                {breakpoint.xs ?
+                    (<Button
+                        block
+                        type='default'
+                        size='large'
+                    >
+                        Войти через Google
+                    </Button>)
+                    :
+                    (<Button
+                        onClick={() => window.location.href = paths.googleAuth}
+                        block
+                        type='default'
+                        size='large'
+                        icon={<GooglePlusOutlined/>}
+                    > Войти через Google
+                    </Button>)}
             </div>
         </Form>
     );
