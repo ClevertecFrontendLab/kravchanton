@@ -1,0 +1,11 @@
+.title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+    color: var(--character-light-title-85)
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

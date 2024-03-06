@@ -1,0 +1,82 @@
+.contentWrap {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow: auto;
+    height: 730px;
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+    padding: 112px 0px 0px 0px;
+    width: 100%;
+    height: 152px;
+    justify-content: start;
+    align-items: start;
+    gap: 8px;
+}
+.emptyCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 301px;
+    padding: 56px 130px;
+    width: 100%;
+    height: 245px;
+    background: var(--character-light-primary-inverse);
+
+    & p {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 130%;
+        text-align: center;
+        color: var(--primary-light-9);
+    }
+    & span {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 130%;
+        text-align: center;
+        color: var(--character-light-secondary-45);
+        width: 521px;
+    }
+}
+.btnWrapper {
+    display: flex;
+    justify-content: center;
+}
+@media (max-width: 576px) {
+    .contentWrap {
+        padding: 16px;
+        gap: 48px;
+    }
+    .buttons {
+        flex-direction: column;
+        height: 128px;
+        padding-top: 32px;
+        gap: 16px;
+    }
+    .cards {
+        gap: 16px;
+    }
+    .emptyCard {
+        padding: 48px 32px;
+        height: auto;
+        gap: 48px;
+        margin-top: 8px;
+        & span {
+            width: auto;
+        }
+
+    }
+
+
+}

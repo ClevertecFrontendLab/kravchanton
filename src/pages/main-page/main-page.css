@@ -1,7 +1,7 @@
 .wrapper {
     margin: 0 auto;
     box-sizing: border-box;
-    max-width: 1440px;
+    max-width: var(--maxWidth);
     min-height: 1024px;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .ant-layout-sider {
-    z-index: 100;
+    z-index: 10;
     background: white;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .ant-layout-header {
-    padding: 16px 24px;
+    padding: var(--padding16-24);
     height: auto;
     line-height: 1;
     background-color: var(--primary-light-1);
@@ -79,6 +79,12 @@
     .ant-layout-footer {
         padding: 0 16px 42px 16px;
 
+    }
+    .ant-modal {
+        margin: var(--margin16)
+    }
+    .ant-result {
+        padding: 0;
     }
 
 }

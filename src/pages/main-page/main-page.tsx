@@ -1,35 +1,28 @@
 import {Button, Layout} from 'antd';
 import React, {useState} from 'react';
 import './main-page.css';
-import {HeaderContent} from "@components/HeaderContent/HeaderContent";
-import {MainContent} from "@components/MainContent/MainContent";
-import {FooterContent} from "@components/FooterContent/FooterContent";
 import {NavigationMenu} from "@components/NavigationMenu/NavigationMenu";
-import logo from '../../assets/image/Logo.png'
+import logo from '../../assets/image/LogoMain.png'
 import LogoMin from '../../assets/image/LogoMin.png'
 import {Trigger} from "@components/Triger/Triger";
 import {ExitIcon} from "../../assets/image/Exit";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
 import {setIsLogout} from "@pages/auth/model/auth.slice";
-import {useSelector} from "react-redux";
-import { Navigate } from "react-router-dom";
+import {Outlet} from "react-router-dom";
+import {history} from "@redux/configure-store";
+import {paths} from "@utils/constants/paths";
 
-
-const {Footer, Header, Sider, Content} = Layout;
-
-
+const { Sider} = Layout;
 export const MainPage: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(true)
     const breakpoint = useBreakpoint();
-    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-
     const dispatch =useAppDispatch()
-
-    const logout = () => dispatch(setIsLogout())
-
-    return (
-        isLoggedIn ? <>
+    const logout = () => {
+        dispatch(setIsLogout())
+        history.push(paths.auth)
+    }
+    return <>
             <Layout className={'wrapper'}>
                 <Sider width={`${breakpoint.xs ? 106 : 208}`}
                        collapsedWidth={`${breakpoint.xs ? 0 : 64}`}
@@ -44,28 +37,20 @@ export const MainPage: React.FC = () => {
                     <Button
                         onClick={logout}
                         block
-                        type={'default'}
-                        size={'large'}
-                        className={'exit-button'}
+                        type='default'
+                        size='large'
+                        className='exit-button'
                         icon={breakpoint.xs ? "" : <ExitIcon/>}
                     >
                         {collapsed ? '' : 'Выход'}
                     </Button>
                 </Sider>
                 <Layout>
-                    <Header>
-                        <HeaderContent/>
-                    </Header>
-                    <Content>
-                        <MainContent/>
-                    </Content>
-                    <Footer>
-                        <FooterContent/>
-                    </Footer>
+                   <Outlet />
                 </Layout>
             </Layout>
 
 
-        </> : <Navigate to="/auth" />
-    );
+        </>
+
 };

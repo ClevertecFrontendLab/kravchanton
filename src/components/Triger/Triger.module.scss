@@ -10,8 +10,6 @@
     justify-content: center;
     background-color: var(--character-light-primary-inverse);
     clip-path: polygon(0 0, 100% 12%, 100% 88%, 0% 100%);
-
-
     & :hover {
         cursor: pointer;
     }

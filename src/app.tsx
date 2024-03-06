@@ -4,7 +4,7 @@ import {Navigate, Route, Routes} from 'react-router-dom';
 import {useSelector} from "react-redux";
 import {Loader} from "@components/Loader/Loader";
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
-import {setIsLoggedIn} from "@pages/auth/model/auth.slice";
+import {setAccessToken, setIsLoggedIn} from "@pages/auth/model/auth.slice";
 import {MainPage} from "@pages/main-page";
 import {ResultAuth} from "@components/Results/ResultAuth";
 import {CheckEmail} from "@components/CheckEmail/CheckEmail";
@@ -12,15 +12,28 @@ import {LayoutResult} from "@components/LayoutResult/LayoutResult";
 import {Layout} from "@components/Layout/Layout";
 import {ChangePassword} from "@components/ChangePassword/ChangePassword";
 import {Spin} from "antd";
+import {MainPageContent} from "@pages/main-page/MainPageContent";
+import {FeedbackPage} from "@pages/feedback/ui/feedback-page";
+import {history} from "@redux/configure-store";
+import {accessTokenSelector, isLoadingSelector} from "@utils/Selectors/Selectors";
+import {paths} from "@utils/constants/paths";
 
 
 export const App = () => {
-    const isLoading = useSelector(state => state.auth.isLoading)
+    const isLoading = useSelector(isLoadingSelector)
     const dispatch = useAppDispatch()
+    const accessToken = useSelector(accessTokenSelector);
+    const accessTokenFromGoogle = new URLSearchParams(window.location.search).get('accessToken');
+    if (accessTokenFromGoogle) {
+        localStorage.token = accessTokenFromGoogle;
+        dispatch(setIsLoggedIn(true))
+        sessionStorage.token = accessTokenFromGoogle;
+        dispatch(setAccessToken(accessTokenFromGoogle))
+    }
     const results = [
         {
             id: 1,
-            path: 'error-login',
+            path: paths.errorLogin,
             status: 'warning',
             title: 'Вход не выполнен',
             subTitle: 'Что-то пошло не так. Попробуйте еще раз',
@@ -29,7 +42,7 @@ export const App = () => {
         },
         {
             id: 2,
-            path: 'error-user-exist',
+            path: paths.errorUserExist,
             status: "error",
             title: "Данные не сохранились",
             subTitle: "Такой e-mail уже записан в системе. Попробуйте зарегистрироваться по другому e-mail.",
@@ -38,7 +51,7 @@ export const App = () => {
         },
         {
             id: 3,
-            path: 'error',
+            path: paths.error,
             status: "error",
             title: "Данные не сохранились",
             subTitle: "Что-то пошло не так и ваша регистрация не завершилась. Попробуйте ещё раз.",
@@ -47,7 +60,7 @@ export const App = () => {
         },
         {
             id: 4,
-            path: 'success',
+            path: paths.success,
             status: "success",
             title: "Регистрация успешна",
             subTitle: "Регистрация прошла успешно. Зайдите в приложение, используя свои e-mail и пароль",
@@ -56,7 +69,7 @@ export const App = () => {
         },
         {
             id: 5,
-            path: 'error-check-email-no-exist',
+            path: paths.errorCheckEmailNoExist,
             status: "error",
             title: "Такой e-mail не зарегистрирован",
             subTitle: "Мы не нашли в базе вашего e-mail. Попробуйте войти с другим e-mail.",
@@ -65,7 +78,7 @@ export const App = () => {
         },
         {
             id: 6,
-            path: 'error-check-email',
+            path: paths.errorCheckEmail,
             status: "500",
             title: "Что-то пошло не так",
             subTitle: "Произошла ошибка, попробуйте отправить форму ещё раз.",
@@ -73,7 +86,7 @@ export const App = () => {
             testId: 'check-back-button'
         }, {
             id: 7,
-            path: 'error-change-password',
+            path: paths.errorChangePassword,
             status: "error",
             title: "Данные не сохранились",
             subTitle: "Что-то пошло не так и ваша регистрация не завершилась. Попробуйте ещё раз.",
@@ -82,7 +95,7 @@ export const App = () => {
         },
         {
             id: 8,
-            path: 'success-change-password',
+            path: paths.successChangePassword,
             status: "success",
             title: "Пароль успешно изменен",
             subTitle: "Теперь можно войти в аккаунт, используя свой логин и новый пароль",
@@ -93,25 +106,32 @@ export const App = () => {
     ]
 
     useEffect(() => {
-        console.log(localStorage.token)
         dispatch(setIsLoggedIn(!!localStorage.token))
-        ;
+        localStorage.token && dispatch(setAccessToken(localStorage.token))
+        if (!localStorage.token && !accessToken) history.push(paths.auth)
+        else if (setIsLoggedIn || localStorage.token) {
+            history.location.pathname !== paths.auth ? history.push(history.location.pathname) : history.push(paths.main)
+        }
+
     }, []);
     return <>
         <Spin spinning={isLoading} indicator={<Loader/>}/>
 
         <Routes>
-            <Route path={'/'} element={<Navigate to={"/auth"}/>}/>
-            <Route path='/auth' element={<Layout/>}>
+            <Route path={'/'} element={<Navigate to={paths.auth}/>}/>
+            <Route path={paths.auth} element={<Layout/>}>
                 <Route index element={<AuthPage/>}/>
-                <Route path='registration' element={<AuthPage/>}/>
-                <Route path='confirm-email' element={<CheckEmail/>}/>
-                <Route path='change-password' element={<ChangePassword/>}/>
+                <Route path={paths.registration} element={<AuthPage/>}/>
+                <Route path={paths.confirmEmail} element={<CheckEmail/>}/>
+                <Route path={paths.changePassword} element={<ChangePassword/>}/>
             </Route>
-            <Route path='/main' element={<MainPage/>}>
+            <Route path={'/'} element={<MainPage/>}>
+                <Route path={paths.main} element={<MainPageContent/>}/>
+                <Route path={paths.feedbacks} element={<FeedbackPage/>}/>
+
             </Route>
 
-            <Route path='/result' element={<LayoutResult/>}>
+            <Route path={paths.result} element={<LayoutResult/>}>
                 {results.map((t) => <Route path={t.path} key={t.id}
                                            element={<ResultAuth status={t.status} title={t.title}
                                                                 subTitle={t.subTitle}

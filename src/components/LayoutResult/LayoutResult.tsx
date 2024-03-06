@@ -4,14 +4,11 @@ import {ResultWrapper} from "@components/ResultWrapper/ResultWrapper";
 import {history} from '@redux/configure-store';
 import {useEffect} from "react";
 
-
-export const LayoutResult = () => {
+export const LayoutResult: React.FC = () => {
     const navigate = useNavigate()
-
     useEffect(() => {
         !history.location.state?.state && navigate('/')
     }, []);
-
     return <>
         <div className={styles.wrapper}>
             <div className={styles.blur}>

@@ -1,0 +1,10 @@
+
+.path {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    color: var(--character-light-secondary-45);
+    & span {
+        color: var(--character-light-title-85);
+    }
+}
