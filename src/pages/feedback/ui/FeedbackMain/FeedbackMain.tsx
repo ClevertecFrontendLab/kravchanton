@@ -64,8 +64,7 @@ export const FeedbackMain: React.FC = () => {
                 style={{
                     color: "var(--primary-light-6)",
                     width: `${breakpoint.xs ? "100%" : "auto"}`
-                }}
-            >
+                }}>
                 {ShowFullReviews ? 'Свернуть все отзывы' : 'Развернуть все отзывы'}
             </Button>
         </div>

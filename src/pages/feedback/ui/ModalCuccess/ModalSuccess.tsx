@@ -10,7 +10,6 @@ export const ModalSuccess: React.FC = ({modalSuccess}: ModalSuccessType) => {
     const dispatch = useAppDispatch()
     const breakpoint = useBreakpoint();
     const handleClose = () => dispatch(setModalSuccess(false))
-
     return <Modal footer={null}
                   closable={false}
                   width={breakpoint.xs ? "auto" : 520}
