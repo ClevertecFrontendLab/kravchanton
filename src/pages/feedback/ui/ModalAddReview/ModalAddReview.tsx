@@ -25,20 +25,17 @@ export const ModalAddReview: React.FC = ({
                                          }: ModalAddReviewType) => {
     const dispatch = useAppDispatch();
     const breakpoint = useBreakpoint();
-
-
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setMessage(e.target.value);
     };
     const postReview = () => {
-
         dispatch(postFeedback({message, rating}))
         closeModalAddReview()
-
     }
     return <><Modal title={<p className={styles.title}> Ваш отзыв</p>}
                     open={addReviewModal}
                     width={breakpoint.xs ? "auto" : 520}
+                    onCancel={closeModalAddReview}
                     footer={<Button
                         type='primary'
                         size='large'
@@ -48,11 +45,10 @@ export const ModalAddReview: React.FC = ({
                             background: " var(--primary-light-6)",
                             width: `${breakpoint.xs ? "100%" : "auto"}`
                         }}
-
                     >
                         Опубликовать
                     </Button>}
-                    onCancel={closeModalAddReview}>
+    >
         <div className={styles.wrapper}>
             <Rate
                 onChange={setRating}

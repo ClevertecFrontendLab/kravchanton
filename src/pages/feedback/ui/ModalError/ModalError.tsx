@@ -3,17 +3,18 @@ import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
 import {setErrorGetFeedback} from "@pages/feedback/model/feedback.slice";
 import {history} from "@redux/configure-store";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
-
+import {paths} from "@utils/constants/paths";
 
 export const ModalError: React.FC = ({modalError}: boolean) => {
     const dispatch = useAppDispatch()
     const breakpoint = useBreakpoint();
     const handleClose = () => {
         dispatch(setErrorGetFeedback(false))
-        history.push('/main')
+        history.push(paths.main)
     }
-    return <Modal footer={null} closable={false} width={breakpoint.xs ? "auto" : 520}
-
+    return <Modal footer={null}
+                  closable={false}
+                  width={breakpoint.xs ? "auto" : 520}
                   open={modalError}>
         <Result
             status="500"

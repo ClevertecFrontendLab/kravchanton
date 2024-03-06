@@ -11,6 +11,7 @@ import {ModalError} from "@pages/feedback/ui/ModalError/ModalError";
 import {ModalSuccess} from "@pages/feedback/ui/ModalCuccess/ModalSuccess";
 import {ModalErrorPost} from "@pages/feedback/ui/ModalErrorPost/ModalErrorPost";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
+import {feedbackSelector} from "@utils/Selectors/Selectors";
 
 export const FeedbackMain: React.FC = () => {
     const [ShowFullReviews, setShowFullReviews] = useState(false)
@@ -21,11 +22,10 @@ export const FeedbackMain: React.FC = () => {
         modalError,
         modalSuccess,
         modalErrorPost
-    } = useSelector<RootState, FeedbackType>(state => state.feedback)
+    } = useSelector<RootState, FeedbackType>(feedbackSelector)
     const [message, setMessage] = useState('')
     const [rating, setRating] = useState(0)
     const breakpoint = useBreakpoint();
-
     useEffect(() => {
         dispatch(fetchFeedback())
     }, [])
@@ -36,7 +36,6 @@ export const FeedbackMain: React.FC = () => {
         && [...data]
             .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     const feedbacks = ShowFullReviews ? sortedFeedbacks : sortedFeedbacks?.slice(0, 4)
-
     return <> {feedbacks.length > 0 ? <div className={styles.contentWrap}>
         <div className={styles.cards}>
             {feedbacks.map(t => <FeedbackCard
@@ -54,14 +53,12 @@ export const FeedbackMain: React.FC = () => {
                 style={{
                     background: " var(--primary-light-6)",
                     width: `${breakpoint.xs ? "100%" : "auto"}`
-                }}
-
-            >
+                }}>
                 Написать отзыв
             </Button>
             <Button
-                type={'link'}
-                size={'large'}
+                type='link'
+                size='large'
                 onClick={() => setShowFullReviews(prev => !prev)}
                 data-test-id='all-reviews-button'
                 style={{
@@ -70,30 +67,28 @@ export const FeedbackMain: React.FC = () => {
                 }}
             >
                 {ShowFullReviews ? 'Свернуть все отзывы' : 'Развернуть все отзывы'}
-            </Button></div>
+            </Button>
+        </div>
     </div> : <div className={styles.contentWrap}>
         <div className={styles.emptyCard}>
-
             <p>Оставьте свой отзыв первым</p>
             <span>Вы можете быть первым, кто оставит отзыв об этом фитнесс приложении. Поделитесь своим мнением и опытом с другими пользователями, и помогите им сделать правильный выбор.</span>
         </div>
-        <div className={styles.btnWrapper}><Button
-            type='primary'
-            size='large'
-            onClick={() => setAddReviewModal(true)}
-
-            data-test-id='write-review'
-            style={{
-                background: " var(--primary-light-6)",
-                width: `${breakpoint.xs ? "100%" : "auto"}`
-            }}
-
-        >
-            Написать отзыв
-        </Button></div>
+        <div className={styles.btnWrapper}>
+            <Button
+                type='primary'
+                size='large'
+                onClick={() => setAddReviewModal(true)}
+                data-test-id='write-review'
+                style={{
+                    background: " var(--primary-light-6)",
+                    width: `${breakpoint.xs ? "100%" : "auto"}`
+                }}>
+                Написать отзыв
+            </Button>
+        </div>
     </div>}
-        < ModalError modalError={modalError}
-        />
+        < ModalError modalError={modalError}/>
         <ModalAddReview message={message} setMessage={setMessage} rating={rating}
                         setRating={setRating} addReviewModal={addReviewModal}
                         closeModalAddReview={closeModalAddReview}/>

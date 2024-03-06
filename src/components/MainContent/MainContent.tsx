@@ -28,7 +28,7 @@ const cards: CardsType[] = [
         icon: <IdcardOutlined/>,
     },
 ]
-export const MainContent = () => <>
+export const MainContent: React.FC = () => <>
     <div className={styles.contentWrap}>
         <div className={styles.contentItem}>
             <p>

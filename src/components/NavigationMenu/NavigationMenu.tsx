@@ -9,9 +9,7 @@ export type ItemType = {
     icon: ReactNode
     label: string
 }
-
-
-export const NavigationMenu = () => {
+export const NavigationMenu: React.FC = () => {
     const breakpoint = useBreakpoint();
     const items: ItemType[] = [
         {

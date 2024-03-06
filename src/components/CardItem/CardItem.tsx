@@ -3,7 +3,7 @@ import {CardsType} from "@components/MainContent/MainContent.js";
 import styles from './CardItem.module.scss'
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 
-export const CardItem = ({title, linkTitle, icon}: CardsType) => {
+export const CardItem: React.FC = ({title, linkTitle, icon}: CardsType) => {
     const breakpoint = useBreakpoint();
     const headStyles = {
         textAlign: breakpoint.xs ? 'center' : 'start',
@@ -14,7 +14,7 @@ export const CardItem = ({title, linkTitle, icon}: CardsType) => {
         <Card title={title} className={styles.cardItem}
               headStyle={headStyles}
               bodyStyle={{textAlign: 'center',}}
-              size={'small'}
+              size='small'
         >
             <Button icon={icon} type="text"
                     style={{color: "var(--primary-light-6)"}}> {linkTitle} </Button>

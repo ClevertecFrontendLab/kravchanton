@@ -5,7 +5,6 @@ import {history} from './../../../redux/configure-store';
 import {feedbackAPI} from "@pages/feedback/api/feedback.api";
 import {setIsLoading} from "@pages/auth/model/auth.slice";
 
-
 export const fetchFeedback = createAppAsyncThunk<any>("feedback/fetchFeedback", async (_, thunkAPI) => {
     const {dispatch, rejectWithValue} = thunkAPI;
     dispatch(setIsLoading(true))
@@ -33,14 +32,11 @@ export const postFeedback = createAppAsyncThunk<any>("feedback/fetchFeedback", a
         dispatch(setIsLoading(false))
     }
 })
-
-
 export type FeedbackType = {
     data: FeedbackData[],
     modalError: boolean
     modalSuccess: boolean
     modalErrorPost: boolean
-
 }
 export type FeedbackData = {
     id: string,
@@ -76,8 +72,6 @@ const FeedbackSlice = createSlice({
             return {...state, data: [action.payload, ...state.data]}
         },
     }
-
-
 });
 export const {
     setFeedback,

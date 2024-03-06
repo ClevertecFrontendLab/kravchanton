@@ -1,7 +1,11 @@
 import {instance} from "@utils/api";
-import {confirmEmail} from "@pages/auth/model/auth.slice";
 
-
+export type LoginParamsType = {
+    email: string;
+    password?: string;
+    confirmPassword?: string
+    code?: string
+};
 export const authAPI = {
     login(data: LoginParamsType) {
         return instance.post("auth/login", data);
@@ -23,9 +27,3 @@ export const authAPI = {
     },
 };
 
-export type LoginParamsType = {
-    email: string;
-    password?: string;
-    confirmPassword?: string
-    code?: string
-};

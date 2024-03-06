@@ -6,7 +6,6 @@ type FeedbackAvatarType = {
     imageSrc: string,
     fullName: string
 }
-
 export const FeedbackAvatar: React.FC = ({imageSrc, fullName}: FeedbackAvatarType) => {
     return <div className={styles.wrapper}><Avatar
         alt='author'

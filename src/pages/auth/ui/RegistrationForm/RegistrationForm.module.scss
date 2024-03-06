@@ -4,7 +4,6 @@
     gap: 24px;
 }
 
-
 .rowForm {
     display: flex;
     flex-direction: row;
@@ -27,5 +26,5 @@
     color: var(--primary-light-6);
 }
 .passwordConfirm {
-    margin-top: 16px;
+    margin-top: var(--margin16);
 }

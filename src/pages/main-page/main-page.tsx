@@ -13,22 +13,15 @@ import {Outlet} from "react-router-dom";
 import {history} from "@redux/configure-store";
 import {paths} from "@utils/constants/paths";
 
-
 const { Sider} = Layout;
-
-
 export const MainPage: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(true)
     const breakpoint = useBreakpoint();
-
     const dispatch =useAppDispatch()
-
     const logout = () => {
         dispatch(setIsLogout())
         history.push(paths.auth)
-
     }
-
     return <>
             <Layout className={'wrapper'}>
                 <Sider width={`${breakpoint.xs ? 106 : 208}`}
@@ -44,9 +37,9 @@ export const MainPage: React.FC = () => {
                     <Button
                         onClick={logout}
                         block
-                        type={'default'}
-                        size={'large'}
-                        className={'exit-button'}
+                        type='default'
+                        size='large'
+                        className='exit-button'
                         icon={breakpoint.xs ? "" : <ExitIcon/>}
                     >
                         {collapsed ? '' : 'Выход'}

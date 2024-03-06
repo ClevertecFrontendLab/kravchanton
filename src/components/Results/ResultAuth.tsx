@@ -1,5 +1,4 @@
 import {FC} from 'react';
-
 import {Button, Result} from 'antd';
 import {history} from "@redux/configure-store";
 import {changePassword, checkEmail, registration} from "@pages/auth/model/auth.slice";
@@ -15,7 +14,6 @@ type ResultError = {
 }
 export const ResultAuth: FC = ({status, title, subTitle,  button, testId}: ResultError) => {
     const dispatch = useAppDispatch();
-
     const handleButton = () => {
         if(status == "success") {
             history.push(paths.auth)
@@ -39,7 +37,7 @@ export const ResultAuth: FC = ({status, title, subTitle,  button, testId}: Resul
             title={title}
             subTitle={subTitle}
             extra={
-                <Button data-test-id={testId} size='large' type='primary' block key={"error"}
+                <Button data-test-id={testId} size='large' type='primary' block key="error"
                         onClick={handleButton}
                         htmlType='button'>
                     {button}

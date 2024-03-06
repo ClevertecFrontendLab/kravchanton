@@ -2,9 +2,8 @@ import {Button, Card} from "antd";
 import {AndroidFilled, AppleFilled} from "@ant-design/icons";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 
-export const FooterCard = () => {
+export const FooterCard: React.FC = () => {
     const breakpoint = useBreakpoint();
-
     return <>
         <Card
             bodyStyle={{padding: "12px 0", textAlign: 'center'}}
@@ -13,8 +12,8 @@ export const FooterCard = () => {
                 <div>
                     <Button
                         style={{color: "var(--primary-light-6)", padding: "0px"}}
-                        type={'link'}
-                        size={'large'}
+                        type='link'
+                        size='large'
                     >
                         Скачать на телефон
                     </Button>
@@ -24,12 +23,12 @@ export const FooterCard = () => {
                 </div>
             }
         >
-            <Button size={'medium'} type={'link'}
+            <Button size='medium' type='link'
                     style={{color: ' var(--character-light-title-85)'}}
                     icon={<AndroidFilled/>}>
                 Android OS
             </Button>
-            <Button size={'medium'} type={'link'}
+            <Button size='medium' type='link'
                     style={{color: ' var(--character-light-title-85)'}}
                     icon={<AppleFilled/>}>
                 Apple OS

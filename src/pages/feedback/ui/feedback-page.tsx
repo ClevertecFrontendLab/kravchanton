@@ -3,16 +3,13 @@ import {Layout} from "antd";
 import {HeaderFeedback} from "@components/HeaderFeedback/HeaderFeedback";
 import {FeedbackMain} from "@pages/feedback/ui/FeedbackMain/FeedbackMain";
 
-const { Header, Content} = Layout;
+const {Header, Content} = Layout;
+export const FeedbackPage = () => <>
+    <Header>
+        <HeaderFeedback/>
+    </Header>
+    <Content>
+        <FeedbackMain/>
+    </Content>
+</>
 
-export const FeedbackPage = () => {
-
-    return <>
-        <Header>
-            <HeaderFeedback/>
-        </Header>
-        <Content>
-            <FeedbackMain/>
-        </Content>
-   </>
-}

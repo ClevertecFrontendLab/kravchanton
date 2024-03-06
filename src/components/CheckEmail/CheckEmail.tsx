@@ -4,30 +4,28 @@ import VerificationInput from "react-verification-input";
 import styles from './CheckEmail.module.scss'
 import {confirmEmail} from "@pages/auth/model/auth.slice";
 import {useAppDispatch} from "@hooks/typed-react-redux-hooks";
-
+import {emailSelector, errorSelector} from "@utils/Selectors/Selectors";
+import {useSelector} from "react-redux";
 const {Text} = Typography;
 
 export const CheckEmail: FC = () => {
     const dispatch = useAppDispatch();
-
-    const email = (state) => state.auth.email
-    const error = (state) =>  state.auth.error
+    const email = useSelector(emailSelector)
+    const error = useSelector(errorSelector)
     const [verificationCode, setVerificationCode] = useState('');
     const handleConfirm = (code) => {
-
         dispatch(confirmEmail({email, code}))
         setVerificationCode('')
     }
-
     return <div className={styles.wrapper}>{error ? <Result
-        status={'error'}
-        title={"Неверный код. Введите код для восстановления аккауанта"}
+        status='error'
+        title="Неверный код. Введите код для восстановления аккауанта"
         subTitle={<Text type="secondary">Мы отправили вам на e-mail <span
             style={{fontWeight: '600'}}>{email}</span> шестизначный код. Введите его в поле
             ниже.</Text>
         }
     /> : <Result
-        title={"Введите код для восстановления аккаунта"}
+        title="Введите код для восстановления аккаунта"
         subTitle={<Text type="secondary">Мы отправили вам на e-mail <span
             style={{fontWeight: '600'}}>{email}</span> шестизначный код. Введите его в поле
             ниже.</Text>

@@ -1,6 +1,6 @@
 .wrapper {
     margin: 0 auto;
-    max-width: 1440px;
+    max-width: var(--maxWidth);
     height: 1024px;
     background: url('src/assets/image/Enter_page_light.jpg') no-repeat center;
     background-size: cover;

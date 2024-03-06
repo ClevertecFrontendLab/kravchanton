@@ -7,17 +7,13 @@ type ModalErrorPostType = {
     modalErrorPost: boolean,
     setAddReviewModal: (value: boolean) => void
 }
-
 export const ModalErrorPost: React.FC = ({
                                              modalErrorPost,
                                              setAddReviewModal
                                          }: ModalErrorPostType) => {
     const dispatch = useAppDispatch()
     const breakpoint = useBreakpoint();
-
-    const handleClose = () => {
-        dispatch(setModalErrorPost(false))
-    }
+    const handleClose = () => dispatch(setModalErrorPost(false))
     return <Modal footer={null}
                   width={breakpoint.xs ? "auto" : 520}
                   closable={false}

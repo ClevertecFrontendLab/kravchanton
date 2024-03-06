@@ -22,7 +22,7 @@ export const ModalSuccess: React.FC = ({modalSuccess}: ModalSuccessType) => {
             extra={<Button onClick={handleClose} style={{
                 background: " var(--primary-light-6)",
                 width: "100%"
-            }} size={'large'} type="primary">Отлично</Button>}
+            }} size='large' type="primary">Отлично</Button>}
         />
     </Modal>
 }
